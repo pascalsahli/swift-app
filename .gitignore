@@ -1,27 +1,13 @@
-## Build generated
-build/
-DerivedData/
-
-## Xcode user-specific
-*.xcodeproj/xcuserdata/
-*.xcworkspace/xcuserdata/
-*.xcodeproj/project.xcworkspace/xcuserdata/
-*.xcuserstate
-xcuserdata/
-
-## Generated Xcode project (from project.yml via XcodeGen)
-MeetingNotes.xcodeproj/
-
-## Swift Package Manager
-.build/
-.swiftpm/
-Packages/
-Package.pins
-Package.resolved
-
-## macOS
-.DS_Store
-
 ## Editors
 .vscode/
 .idea/
+*.swp
+
+## OS
+.DS_Store
+Thumbs.db
+
+## Local dev
+node_modules/
+.cache/
+dist/
