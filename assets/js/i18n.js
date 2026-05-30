@@ -1,0 +1,167 @@
+/* =================================================================
+   Sahli — bilingual (DE / EN) translation dictionary
+   Edit the strings below to update the website copy.
+   Keys are referenced in the HTML via  data-i18n="key".
+   Default language is German; choice is remembered per visitor.
+   ================================================================= */
+window.SAHLI_I18N = {
+  de: {
+    /* --- meta / shared --- */
+    "nav.home":     "Start",
+    "nav.about":    "Über",
+    "nav.services": "Leistungen",
+    "nav.contact":  "Kontakt",
+    "footer.tagline":  "Beständigkeit, Sorgfalt und ein Anspruch an Qualität.",
+    "footer.nav":      "Navigation",
+    "footer.contact":  "Kontakt",
+    "footer.rights":   "Alle Rechte vorbehalten.",
+    "footer.lang":     "Diese Seite ist zweisprachig — Deutsch & English.",
+    "cta.primary":   "Kontakt aufnehmen",
+    "cta.secondary": "Mehr erfahren",
+
+    /* --- home --- */
+    "home.title":        "Sahli — Start",
+    "home.hero.eyebrow": "Willkommen",
+    "home.hero.title":   "Werte, die Bestand haben.",
+    "home.hero.lead":    "[Platzhalter] Hier steht ein einprägsamer Einstiegssatz, der in einem Satz beschreibt, wer Sie sind und wofür Sie stehen. Bitte mit Ihrem echten Text ersetzen.",
+    "home.intro.eyebrow":"Über",
+    "home.intro.title":  "Ein kurzer Überblick.",
+    "home.intro.body":   "[Platzhalter] Ein einleitender Absatz über Sie oder Ihr Unternehmen — Hintergrund, Haltung und was Besucher hier erwartet. Diesen Text später durch die Inhalte Ihrer bisherigen Seite ersetzen.",
+    "home.intro.link":   "Mehr über uns",
+    "home.svc.eyebrow":  "Leistungen",
+    "home.svc.title":    "Was wir bieten.",
+    "home.svc.1.t":      "Bereich Eins",
+    "home.svc.1.d":      "[Platzhalter] Kurze Beschreibung der ersten Leistung oder des ersten Schwerpunkts.",
+    "home.svc.2.t":      "Bereich Zwei",
+    "home.svc.2.d":      "[Platzhalter] Kurze Beschreibung der zweiten Leistung oder des zweiten Schwerpunkts.",
+    "home.svc.3.t":      "Bereich Drei",
+    "home.svc.3.d":      "[Platzhalter] Kurze Beschreibung der dritten Leistung oder des dritten Schwerpunkts.",
+    "home.cta.title":    "Lassen Sie uns sprechen.",
+    "home.cta.body":     "[Platzhalter] Ein kurzer, einladender Aufruf zur Kontaktaufnahme.",
+
+    /* --- about --- */
+    "about.title":       "Sahli — Über",
+    "about.hero.eyebrow":"Über",
+    "about.hero.title":  "Wer wir sind.",
+    "about.hero.lead":   "[Platzhalter] Ein Satz, der das Selbstverständnis zusammenfasst.",
+    "about.body.title":  "Unsere Geschichte.",
+    "about.body.p1":     "[Platzhalter] Erster Absatz Ihrer Geschichte — Ursprung, Werdegang, Beweggründe.",
+    "about.body.p2":     "[Platzhalter] Zweiter Absatz — Entwicklung, Meilensteine, Gegenwart.",
+    "about.values.title":"Wofür wir stehen.",
+    "about.values.1":    "[Platzhalter] Erster Wert oder Grundsatz.",
+    "about.values.2":    "[Platzhalter] Zweiter Wert oder Grundsatz.",
+    "about.values.3":    "[Platzhalter] Dritter Wert oder Grundsatz.",
+    "about.values.4":    "[Platzhalter] Vierter Wert oder Grundsatz.",
+
+    /* --- services --- */
+    "services.title":       "Sahli — Leistungen",
+    "services.hero.eyebrow":"Leistungen",
+    "services.hero.title":  "Womit wir Ihnen dienen.",
+    "services.hero.lead":   "[Platzhalter] Einleitender Satz zu Ihrem Angebot.",
+    "services.1.t":  "Leistung Eins",
+    "services.1.d":  "[Platzhalter] Ausführlichere Beschreibung der ersten Leistung — Nutzen und Ablauf.",
+    "services.2.t":  "Leistung Zwei",
+    "services.2.d":  "[Platzhalter] Ausführlichere Beschreibung der zweiten Leistung — Nutzen und Ablauf.",
+    "services.3.t":  "Leistung Drei",
+    "services.3.d":  "[Platzhalter] Ausführlichere Beschreibung der dritten Leistung — Nutzen und Ablauf.",
+    "services.4.t":  "Leistung Vier",
+    "services.4.d":  "[Platzhalter] Ausführlichere Beschreibung der vierten Leistung — Nutzen und Ablauf.",
+
+    /* --- contact --- */
+    "contact.title":       "Sahli — Kontakt",
+    "contact.hero.eyebrow":"Kontakt",
+    "contact.hero.title":  "Sprechen wir miteinander.",
+    "contact.hero.lead":   "[Platzhalter] Ein einladender Einstiegssatz für die Kontaktseite.",
+    "contact.info.title":  "Kontaktangaben",
+    "contact.info.addr.l": "Adresse",
+    "contact.info.addr.v": "[Strasse Nr., PLZ Ort]",
+    "contact.info.mail.l": "E-Mail",
+    "contact.info.phone.l":"Telefon",
+    "contact.info.phone.v":"[+41 ...]",
+    "contact.form.name":   "Name",
+    "contact.form.email":  "E-Mail",
+    "contact.form.message":"Nachricht",
+    "contact.form.send":   "Nachricht senden",
+    "contact.form.note":   "Hinweis: Das Formular öffnet Ihr E-Mail-Programm. Für direkten Versand kann später ein Dienst wie Formspree angebunden werden."
+  },
+
+  en: {
+    /* --- meta / shared --- */
+    "nav.home":     "Home",
+    "nav.about":    "About",
+    "nav.services": "Services",
+    "nav.contact":  "Contact",
+    "footer.tagline":  "Constancy, care, and a commitment to quality.",
+    "footer.nav":      "Navigation",
+    "footer.contact":  "Contact",
+    "footer.rights":   "All rights reserved.",
+    "footer.lang":     "This site is bilingual — German & English.",
+    "cta.primary":   "Get in touch",
+    "cta.secondary": "Learn more",
+
+    /* --- home --- */
+    "home.title":        "Sahli — Home",
+    "home.hero.eyebrow": "Welcome",
+    "home.hero.title":   "Values built to last.",
+    "home.hero.lead":    "[Placeholder] A memorable opening line that describes, in one sentence, who you are and what you stand for. Please replace with your real copy.",
+    "home.intro.eyebrow":"About",
+    "home.intro.title":  "A brief overview.",
+    "home.intro.body":   "[Placeholder] An introductory paragraph about you or your company — background, attitude, and what visitors can expect here. Replace later with the content of your existing site.",
+    "home.intro.link":   "More about us",
+    "home.svc.eyebrow":  "Services",
+    "home.svc.title":    "What we offer.",
+    "home.svc.1.t":      "Area One",
+    "home.svc.1.d":      "[Placeholder] A short description of the first service or focus area.",
+    "home.svc.2.t":      "Area Two",
+    "home.svc.2.d":      "[Placeholder] A short description of the second service or focus area.",
+    "home.svc.3.t":      "Area Three",
+    "home.svc.3.d":      "[Placeholder] A short description of the third service or focus area.",
+    "home.cta.title":    "Let's talk.",
+    "home.cta.body":     "[Placeholder] A short, inviting call to get in touch.",
+
+    /* --- about --- */
+    "about.title":       "Sahli — About",
+    "about.hero.eyebrow":"About",
+    "about.hero.title":  "Who we are.",
+    "about.hero.lead":   "[Placeholder] One sentence summarising what you are about.",
+    "about.body.title":  "Our story.",
+    "about.body.p1":     "[Placeholder] First paragraph of your story — origin, journey, motivation.",
+    "about.body.p2":     "[Placeholder] Second paragraph — development, milestones, the present day.",
+    "about.values.title":"What we stand for.",
+    "about.values.1":    "[Placeholder] First value or principle.",
+    "about.values.2":    "[Placeholder] Second value or principle.",
+    "about.values.3":    "[Placeholder] Third value or principle.",
+    "about.values.4":    "[Placeholder] Fourth value or principle.",
+
+    /* --- services --- */
+    "services.title":       "Sahli — Services",
+    "services.hero.eyebrow":"Services",
+    "services.hero.title":  "How we can help.",
+    "services.hero.lead":   "[Placeholder] An introductory sentence about your offering.",
+    "services.1.t":  "Service One",
+    "services.1.d":  "[Placeholder] A fuller description of the first service — benefit and process.",
+    "services.2.t":  "Service Two",
+    "services.2.d":  "[Placeholder] A fuller description of the second service — benefit and process.",
+    "services.3.t":  "Service Three",
+    "services.3.d":  "[Placeholder] A fuller description of the third service — benefit and process.",
+    "services.4.t":  "Service Four",
+    "services.4.d":  "[Placeholder] A fuller description of the fourth service — benefit and process.",
+
+    /* --- contact --- */
+    "contact.title":       "Sahli — Contact",
+    "contact.hero.eyebrow":"Contact",
+    "contact.hero.title":  "Let's get in touch.",
+    "contact.hero.lead":   "[Placeholder] An inviting opening line for the contact page.",
+    "contact.info.title":  "Contact details",
+    "contact.info.addr.l": "Address",
+    "contact.info.addr.v": "[Street No., ZIP City]",
+    "contact.info.mail.l": "Email",
+    "contact.info.phone.l":"Phone",
+    "contact.info.phone.v":"[+41 ...]",
+    "contact.form.name":   "Name",
+    "contact.form.email":  "Email",
+    "contact.form.message":"Message",
+    "contact.form.send":   "Send message",
+    "contact.form.note":   "Note: this form opens your email client. A service such as Formspree can later be connected for direct sending."
+  }
+};
