@@ -1,37 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="currentColor" role="img" aria-label="Sahli & Partner">
   <defs>
-    <!-- single feather, tip pointing up from its base at the origin -->
-    <path id="sp-feather" d="M0 0 C 4 -12 4 -30 0 -50 C -4 -30 -4 -12 0 0 Z"/>
-    <!-- right wing: a fan of feathers sweeping out and down -->
-    <g id="sp-wing">
-      <use href="#sp-feather" transform="translate(120 98) rotate(16) scale(1 1.2)"/>
-      <use href="#sp-feather" transform="translate(120 98) rotate(36) scale(1 1.08)"/>
-      <use href="#sp-feather" transform="translate(120 98) rotate(56) scale(0.98 0.98)"/>
-      <use href="#sp-feather" transform="translate(120 98) rotate(77) scale(0.92 0.86)"/>
-      <use href="#sp-feather" transform="translate(120 98) rotate(98) scale(0.86 0.74)"/>
-      <use href="#sp-feather" transform="translate(120 98) rotate(119) scale(0.8 0.62)"/>
+    <!-- single blade / feather, tip pointing up from its base at the origin -->
+    <path id="sp-blade" d="M0 0 C 3.6 -13 3.8 -32 0 -52 C -3.8 -32 -3.6 -13 0 0 Z"/>
+    <!-- right mane: a fan of blades sweeping up-and-out, lower ones curving down -->
+    <g id="sp-mane">
+      <use href="#sp-blade" transform="translate(120 102) rotate(13) scale(1 1.26)"/>
+      <use href="#sp-blade" transform="translate(120 102) rotate(31) scale(1 1.12)"/>
+      <use href="#sp-blade" transform="translate(120 102) rotate(51) scale(0.97 0.99)"/>
+      <use href="#sp-blade" transform="translate(120 102) rotate(73) scale(0.9 0.85)"/>
+      <use href="#sp-blade" transform="translate(120 102) rotate(96) scale(0.84 0.72)"/>
+      <use href="#sp-blade" transform="translate(120 102) rotate(119) scale(0.78 0.6)"/>
     </g>
   </defs>
 
-  <!-- wings (right + mirrored left) -->
-  <use href="#sp-wing"/>
-  <use href="#sp-wing" transform="translate(240 0) scale(-1 1)"/>
+  <!-- mane / wings (right + mirrored left) -->
+  <use href="#sp-mane"/>
+  <use href="#sp-mane" transform="translate(240 0) scale(-1 1)"/>
 
-  <!-- flame crest: central tongue + two side tongues -->
-  <path d="M120 94 C 108 72 117 53 120 28 C 123 53 132 72 120 94 Z"/>
-  <path d="M120 90 C 128 75 134 62 136 47 C 134 66 128 79 120 90 Z"/>
-  <path d="M120 90 C 112 75 106 62 104 47 C 106 66 112 79 120 90 Z"/>
+  <!-- flame crest: central tongue + two curling side tongues -->
+  <path d="M120 96 C 107 74 116 52 120 24 C 124 52 133 74 120 96 Z"/>
+  <path d="M120 92 C 130 78 137 64 138 47 C 135 67 128 80 120 92 Z"/>
+  <path d="M120 92 C 110 78 103 64 102 47 C 105 67 112 80 120 92 Z"/>
 
-  <!-- lion face: abstract, symmetric -->
-  <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M126 114 L 141 108"/>   <!-- right brow -->
-    <path d="M114 114 L 99 108"/>    <!-- left brow -->
-    <path d="M120 139 L 120 161"/>   <!-- muzzle ridge -->
-    <path d="M111 163 L 120 173 L 129 163"/> <!-- chin -->
+  <!-- lion face -->
+  <g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M126 116 L 143 110"/>           <!-- right brow -->
+    <path d="M114 116 L 97 110"/>            <!-- left brow -->
+    <path d="M120 142 L 120 163"/>           <!-- muzzle ridge -->
+    <path d="M109 164 L 120 176 L 131 164"/> <!-- pointed chin -->
+    <path d="M139 129 Q 141 151 127 167"/>   <!-- right cheek -->
+    <path d="M101 129 Q 99 151 113 167"/>    <!-- left cheek -->
   </g>
-  <!-- eyes -->
-  <path d="M127 122 Q 133 116 141 122 Q 133 126 127 122 Z"/>
-  <path d="M113 122 Q 107 116 99 122 Q 107 126 113 122 Z"/>
+  <!-- eyes (angled almonds) -->
+  <path d="M125 125 Q 133 116 142 120 Q 134 127 125 125 Z"/>
+  <path d="M115 125 Q 107 116 98 120 Q 106 127 115 125 Z"/>
   <!-- nose -->
-  <path d="M120 141 L 112 130 Q 120 126 128 130 Z"/>
+  <path d="M120 143 L 111 131 Q 120 127 129 131 Z"/>
 </svg>
