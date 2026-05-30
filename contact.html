@@ -60,18 +60,9 @@
         </div>
         <div>
           <form action="mailto:info@sahli.com" method="post" enctype="text/plain">
-            <div class="field">
-              <label for="name" data-i18n="contact.form.name"></label>
-              <input type="text" id="name" name="name" required />
-            </div>
-            <div class="field">
-              <label for="email" data-i18n="contact.form.email"></label>
-              <input type="email" id="email" name="email" required />
-            </div>
-            <div class="field">
-              <label for="message" data-i18n="contact.form.message"></label>
-              <textarea id="message" name="message" required></textarea>
-            </div>
+            <div class="field"><label for="name" data-i18n="contact.form.name"></label><input type="text" id="name" name="name" required /></div>
+            <div class="field"><label for="email" data-i18n="contact.form.email"></label><input type="email" id="email" name="email" required /></div>
+            <div class="field"><label for="message" data-i18n="contact.form.message"></label><textarea id="message" name="message" required></textarea></div>
             <button type="submit" class="btn btn-primary" data-i18n="contact.form.send"></button>
             <p class="form-note" data-i18n="contact.form.note"></p>
           </form>
@@ -112,7 +103,10 @@
       </div>
       <div class="footer-bottom">
         <span>© <span id="year">2026</span> Sahli &amp; Partner. <span data-i18n="footer.rights">Alle Rechte vorbehalten.</span></span>
-        <span data-i18n="footer.lang">Diese Seite ist zweisprachig — Deutsch &amp; English.</span>
+        <span class="footer-legal">
+          <a href="impressum.html" data-i18n="legal.imprint">Impressum</a>
+          <a href="datenschutz.html" data-i18n="legal.privacy">Datenschutz</a>
+        </span>
       </div>
     </div>
   </footer>

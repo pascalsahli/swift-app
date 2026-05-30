@@ -20,6 +20,8 @@ window.SAHLI_I18N = {
     "footer.contact":  "Kontakt",
     "footer.rights":   "Alle Rechte vorbehalten.",
     "footer.lang":     "Diese Seite ist zweisprachig — Deutsch & English.",
+    "legal.imprint":   "Impressum",
+    "legal.privacy":   "Datenschutz",
 
     /* --- home --- */
     "home.title":        "Sahli & Partner",
@@ -69,6 +71,8 @@ window.SAHLI_I18N = {
     "news.hero.eyebrow":"Aktuelles",
     "news.hero.title":  "News",
     "news.hero.lead":   "Aktuelle Mandate, Beteiligungen und Meilensteine.",
+    "news.back":        "← Zurück zu News",
+    "news.read":        "Beitrag lesen",
     "news.1.t": "Neuer Service — OpenAI Transformation Advisory",  "news.1.d": "23. März 2023",
     "news.2.t": "Software-Unternehmen zu verkaufen",               "news.2.d": "19. Juli 2017",
     "news.3.t": "Blueliv",                                         "news.3.d": "29. Mai 2017",
@@ -77,6 +81,14 @@ window.SAHLI_I18N = {
     "news.6.t": "Business Sunrise",                                "news.6.d": "31. März 2014",
     "news.7.t": "Lzlabs",                                          "news.7.d": "1. Januar 2012",
     "news.8.t": "Information Builders",                            "news.8.d": "1. Juli 2011",
+    "news.1.body": "Wir bieten neu eine Advisory für die OpenAI-gestützte Transformation an. [Platzhalter — vollständigen Beitragstext ergänzen.]",
+    "news.2.body": "[Platzhalter] Inhalt dieses Beitrags ergänzen.",
+    "news.3.body": "[Platzhalter] Inhalt dieses Beitrags ergänzen.",
+    "news.4.body": "[Platzhalter] Inhalt dieses Beitrags ergänzen.",
+    "news.5.body": "[Platzhalter] Inhalt dieses Beitrags ergänzen.",
+    "news.6.body": "[Platzhalter] Inhalt dieses Beitrags ergänzen.",
+    "news.7.body": "[Platzhalter] Inhalt dieses Beitrags ergänzen.",
+    "news.8.body": "[Platzhalter] Inhalt dieses Beitrags ergänzen.",
 
     /* --- customers --- */
     "customers.title":       "Sahli & Partner — Kunden",
@@ -100,7 +112,40 @@ window.SAHLI_I18N = {
     "contact.form.email":  "E-Mail",
     "contact.form.message":"Nachricht",
     "contact.form.send":   "Nachricht senden",
-    "contact.form.note":   "Hinweis: Das Formular öffnet Ihr E-Mail-Programm. Für direkten Versand kann später ein Dienst wie Formspree angebunden werden."
+    "contact.form.note":   "Hinweis: Das Formular öffnet Ihr E-Mail-Programm. Für direkten Versand kann später ein Dienst wie Formspree angebunden werden.",
+
+    /* --- imprint --- */
+    "imprint.title":        "Sahli & Partner — Impressum",
+    "imprint.hero.eyebrow": "Rechtliches",
+    "imprint.hero.title":   "Impressum",
+    "imprint.company.l":    "Firma",
+    "imprint.company.v":    "Sahli & Partner",
+    "imprint.addr.l":       "Adresse",
+    "imprint.addr.v":       "[Strasse Nr., PLZ Ort, Schweiz]",
+    "imprint.contact.l":    "Kontakt",
+    "imprint.repr.l":       "Vertreten durch",
+    "imprint.repr.v":       "[Name der vertretungsberechtigten Person]",
+    "imprint.register.l":   "Handelsregister",
+    "imprint.register.v":   "[UID / CHE-Nummer]",
+    "imprint.disclaimer.t": "Haftungsausschluss",
+    "imprint.disclaimer.b": "Die Inhalte dieser Website werden mit grösstmöglicher Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte wird jedoch keine Gewähr übernommen. [Platzhalter — bei Bedarf anpassen.]",
+
+    /* --- privacy --- */
+    "privacy.title":        "Sahli & Partner — Datenschutz",
+    "privacy.hero.eyebrow": "Rechtliches",
+    "privacy.hero.title":   "Datenschutzerklärung",
+    "privacy.intro":        "Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen. Wir behandeln Ihre Daten vertraulich und entsprechend den gesetzlichen Vorschriften (revDSG / DSGVO).",
+    "privacy.s1.t": "Verantwortliche Stelle",
+    "privacy.s1.b": "Verantwortlich für die Datenbearbeitung ist Sahli & Partner. [Platzhalter — Adresse und Kontaktangaben ergänzen.]",
+    "privacy.s2.t": "Erhebung und Verarbeitung von Daten",
+    "privacy.s2.b": "Beim Besuch dieser Website werden technisch notwendige Daten verarbeitet. Personenbezogene Daten erheben wir nur, wenn Sie uns diese freiwillig mitteilen, etwa über das Kontaktformular.",
+    "privacy.s3.t": "Cookies und lokale Speicherung",
+    "privacy.s3.b": "Diese Website setzt keine Tracking-Cookies. Lediglich Ihre Sprachwahl (DE/EN) wird lokal in Ihrem Browser gespeichert, um Ihren Besuch komfortabler zu gestalten.",
+    "privacy.s4.t": "Kontaktformular",
+    "privacy.s4.b": "Wenn Sie uns über das Kontaktformular kontaktieren, werden Ihre Angaben zur Bearbeitung der Anfrage verwendet und nicht ohne Ihre Einwilligung weitergegeben.",
+    "privacy.s5.t": "Ihre Rechte",
+    "privacy.s5.b": "Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Bearbeitung Ihrer Daten. Bitte kontaktieren Sie uns dazu über die im Impressum angegebenen Kontaktdaten.",
+    "privacy.updated": "Stand: Mai 2026"
   },
 
   en: {
@@ -118,6 +163,8 @@ window.SAHLI_I18N = {
     "footer.contact":  "Contact",
     "footer.rights":   "All rights reserved.",
     "footer.lang":     "This site is bilingual — German & English.",
+    "legal.imprint":   "Imprint",
+    "legal.privacy":   "Privacy",
 
     /* --- home --- */
     "home.title":        "Sahli & Partner",
@@ -167,6 +214,8 @@ window.SAHLI_I18N = {
     "news.hero.eyebrow":"News",
     "news.hero.title":  "News",
     "news.hero.lead":   "Recent mandates, holdings and milestones.",
+    "news.back":        "← Back to news",
+    "news.read":        "Read post",
     "news.1.t": "New service — OpenAI transformation advisory",  "news.1.d": "23 March 2023",
     "news.2.t": "Software company for sale",                     "news.2.d": "19 July 2017",
     "news.3.t": "Blueliv",                                       "news.3.d": "29 May 2017",
@@ -175,6 +224,14 @@ window.SAHLI_I18N = {
     "news.6.t": "Business Sunrise",                              "news.6.d": "31 March 2014",
     "news.7.t": "Lzlabs",                                        "news.7.d": "1 January 2012",
     "news.8.t": "Information Builders",                          "news.8.d": "1 July 2011",
+    "news.1.body": "We now offer advisory services for OpenAI-driven transformation. [Placeholder — add the full post text.]",
+    "news.2.body": "[Placeholder] Add the content of this post.",
+    "news.3.body": "[Placeholder] Add the content of this post.",
+    "news.4.body": "[Placeholder] Add the content of this post.",
+    "news.5.body": "[Placeholder] Add the content of this post.",
+    "news.6.body": "[Placeholder] Add the content of this post.",
+    "news.7.body": "[Placeholder] Add the content of this post.",
+    "news.8.body": "[Placeholder] Add the content of this post.",
 
     /* --- customers --- */
     "customers.title":       "Sahli & Partner — Customers",
@@ -198,6 +255,39 @@ window.SAHLI_I18N = {
     "contact.form.email":  "Email",
     "contact.form.message":"Message",
     "contact.form.send":   "Send message",
-    "contact.form.note":   "Note: this form opens your email client. A service such as Formspree can later be connected for direct sending."
+    "contact.form.note":   "Note: this form opens your email client. A service such as Formspree can later be connected for direct sending.",
+
+    /* --- imprint --- */
+    "imprint.title":        "Sahli & Partner — Imprint",
+    "imprint.hero.eyebrow": "Legal",
+    "imprint.hero.title":   "Imprint",
+    "imprint.company.l":    "Company",
+    "imprint.company.v":    "Sahli & Partner",
+    "imprint.addr.l":       "Address",
+    "imprint.addr.v":       "[Street No., ZIP City, Switzerland]",
+    "imprint.contact.l":    "Contact",
+    "imprint.repr.l":       "Represented by",
+    "imprint.repr.v":       "[Name of the authorised representative]",
+    "imprint.register.l":   "Commercial register",
+    "imprint.register.v":   "[UID / CHE number]",
+    "imprint.disclaimer.t": "Disclaimer",
+    "imprint.disclaimer.b": "The content of this website is compiled with the greatest possible care. However, no guarantee is given as to the accuracy, completeness or timeliness of the content. [Placeholder — adjust as needed.]",
+
+    /* --- privacy --- */
+    "privacy.title":        "Sahli & Partner — Privacy",
+    "privacy.hero.eyebrow": "Legal",
+    "privacy.hero.title":   "Privacy Policy",
+    "privacy.intro":        "Protecting your personal data is important to us. We treat your data confidentially and in accordance with statutory provisions (revDPA / GDPR).",
+    "privacy.s1.t": "Controller",
+    "privacy.s1.b": "The controller responsible for data processing is Sahli & Partner. [Placeholder — add address and contact details.]",
+    "privacy.s2.t": "Collection and processing of data",
+    "privacy.s2.b": "When you visit this website, technically necessary data is processed. We only collect personal data if you provide it voluntarily, for example via the contact form.",
+    "privacy.s3.t": "Cookies and local storage",
+    "privacy.s3.b": "This website does not use tracking cookies. Only your language choice (DE/EN) is stored locally in your browser to make your visit more convenient.",
+    "privacy.s4.t": "Contact form",
+    "privacy.s4.b": "If you contact us via the contact form, your details are used to process the enquiry and are not shared without your consent.",
+    "privacy.s5.t": "Your rights",
+    "privacy.s5.b": "You have the right to information, correction, deletion and restriction of the processing of your data. Please contact us using the details provided in the imprint.",
+    "privacy.updated": "Last updated: May 2026"
   }
 };
