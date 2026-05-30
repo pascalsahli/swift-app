@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sahli — Kontakt</title>
-  <meta name="description" content="Sahli — Kontakt." />
+  <title>Sahli &amp; Partner</title>
+  <meta name="description" content="Sahli & Partner — Contact." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -14,14 +14,16 @@
 
   <header class="site-header">
     <nav class="nav container" aria-label="Hauptnavigation">
-      <a href="index.html" class="brand" aria-label="Sahli — Start">
-        <img src="assets/img/logo.svg" alt="Sahli" class="logo" />
+      <a href="index.html" class="brand" aria-label="Sahli & Partner">
+        <img src="assets/img/logo.svg" alt="" class="logo-mark" aria-hidden="true" />
+        <span class="wordmark">Sahli&nbsp;&amp;&nbsp;Partner</span>
       </a>
       <ul class="nav-links">
-        <li><a href="index.html"    data-nav="home"     data-i18n="nav.home">Start</a></li>
-        <li><a href="about.html"    data-nav="about"    data-i18n="nav.about">Über</a></li>
-        <li><a href="services.html" data-nav="services" data-i18n="nav.services">Leistungen</a></li>
-        <li><a href="contact.html"  data-nav="contact"  data-i18n="nav.contact">Kontakt</a></li>
+        <li><a href="executive-mandates.html" data-nav="exec" data-i18n="nav.exec">nav.exec</a></li>
+        <li><a href="financial-mandates.html" data-nav="fin" data-i18n="nav.fin">nav.fin</a></li>
+        <li><a href="news.html" data-nav="news" data-i18n="nav.news">nav.news</a></li>
+        <li><a href="customers.html" data-nav="customers" data-i18n="nav.customers">nav.customers</a></li>
+        <li><a href="contact.html" data-nav="contact" data-i18n="nav.contact">nav.contact</a></li>
       </ul>
       <div class="lang-switch" role="group" aria-label="Sprache / Language">
         <button data-lang="de" type="button">DE</button>
@@ -35,65 +37,69 @@
   </header>
 
   <main>
-    <section class="hero" style="padding:96px 0 80px">
+    <section class="hero compact">
       <div class="container">
-        <span class="eyebrow" data-i18n="contact.hero.eyebrow">Kontakt</span>
-        <h1 data-i18n="contact.hero.title">Sprechen wir miteinander.</h1>
-        <p class="lead" data-i18n="contact.hero.lead">Platzhalter.</p>
+        <span class="eyebrow" data-i18n="contact.hero.eyebrow"></span>
+        <h1 data-i18n="contact.hero.title"></h1>
+        <p class="lead" data-i18n="contact.hero.lead"></p>
       </div>
     </section>
-
     <section class="section">
       <div class="container contact-grid">
         <div class="contact-info">
-          <h2 data-i18n="contact.info.title">Kontaktangaben</h2>
+          <h2 data-i18n="contact.info.title"></h2>
           <hr class="rule" />
           <dl>
-            <dt data-i18n="contact.info.addr.l">Adresse</dt>
-            <dd data-i18n="contact.info.addr.v">[Strasse Nr., PLZ Ort]</dd>
-            <dt data-i18n="contact.info.mail.l">E-Mail</dt>
+            <dt data-i18n="contact.info.addr.l"></dt>
+            <dd data-i18n="contact.info.addr.v"></dd>
+            <dt data-i18n="contact.info.mail.l"></dt>
             <dd><a href="mailto:info@sahli.com">info@sahli.com</a></dd>
-            <dt data-i18n="contact.info.phone.l">Telefon</dt>
-            <dd data-i18n="contact.info.phone.v">[+41 ...]</dd>
+            <dt data-i18n="contact.info.phone.l"></dt>
+            <dd data-i18n="contact.info.phone.v"></dd>
           </dl>
         </div>
-
         <div>
           <form action="mailto:info@sahli.com" method="post" enctype="text/plain">
             <div class="field">
-              <label for="name" data-i18n="contact.form.name">Name</label>
+              <label for="name" data-i18n="contact.form.name"></label>
               <input type="text" id="name" name="name" required />
             </div>
             <div class="field">
-              <label for="email" data-i18n="contact.form.email">E-Mail</label>
+              <label for="email" data-i18n="contact.form.email"></label>
               <input type="email" id="email" name="email" required />
             </div>
             <div class="field">
-              <label for="message" data-i18n="contact.form.message">Nachricht</label>
+              <label for="message" data-i18n="contact.form.message"></label>
               <textarea id="message" name="message" required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" data-i18n="contact.form.send">Nachricht senden</button>
-            <p class="form-note" data-i18n="contact.form.note">Hinweis …</p>
+            <button type="submit" class="btn btn-primary" data-i18n="contact.form.send"></button>
+            <p class="form-note" data-i18n="contact.form.note"></p>
           </form>
         </div>
       </div>
     </section>
+
   </main>
 
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div>
-          <img src="assets/img/logo.svg" alt="Sahli" class="logo" />
-          <p data-i18n="footer.tagline">Beständigkeit, Sorgfalt und ein Anspruch an Qualität.</p>
+          <div class="footer-brand">
+            <img src="assets/img/logo.svg" alt="" class="logo-mark" aria-hidden="true" />
+            <span class="wordmark">Sahli&nbsp;&amp;&nbsp;Partner</span>
+          </div>
+          <p data-i18n="footer.tagline">Management- und Investment-Mandate.</p>
         </div>
         <div>
           <h4 data-i18n="footer.nav">Navigation</h4>
           <ul class="footer-links">
-            <li><a href="index.html"    data-i18n="nav.home">Start</a></li>
-            <li><a href="about.html"    data-i18n="nav.about">Über</a></li>
-            <li><a href="services.html" data-i18n="nav.services">Leistungen</a></li>
-            <li><a href="contact.html"  data-i18n="nav.contact">Kontakt</a></li>
+            <li><a href="index.html" data-i18n="home.hero.title">Home</a></li>
+            <li><a href="executive-mandates.html" data-i18n="nav.exec">nav.exec</a></li>
+            <li><a href="financial-mandates.html" data-i18n="nav.fin">nav.fin</a></li>
+            <li><a href="news.html" data-i18n="nav.news">nav.news</a></li>
+            <li><a href="customers.html" data-i18n="nav.customers">nav.customers</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">nav.contact</a></li>
           </ul>
         </div>
         <div>
@@ -105,8 +111,8 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© <span id="year">2026</span> Sahli. <span data-i18n="footer.rights">Alle Rechte vorbehalten.</span></span>
-        <span data-i18n="footer.lang">Diese Seite ist zweisprachig — Deutsch & English.</span>
+        <span>© <span id="year">2026</span> Sahli &amp; Partner. <span data-i18n="footer.rights">Alle Rechte vorbehalten.</span></span>
+        <span data-i18n="footer.lang">Diese Seite ist zweisprachig — Deutsch &amp; English.</span>
       </div>
     </div>
   </footer>

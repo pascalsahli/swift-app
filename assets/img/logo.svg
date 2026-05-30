@@ -1,13 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" role="img" aria-label="SAHLI">
-  <!-- Monogram mark -->
-  <g>
-    <circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" stroke-width="2"/>
-    <text x="32" y="32" text-anchor="middle" dominant-baseline="central"
-          font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
-          font-size="34" font-weight="600" fill="currentColor">S</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="currentColor" role="img" aria-label="Sahli & Partner">
+  <defs>
+    <!-- single feather, tip pointing up from its base at the origin -->
+    <path id="sp-feather" d="M0 0 C 4 -12 4 -30 0 -50 C -4 -30 -4 -12 0 0 Z"/>
+    <!-- right wing: a fan of feathers sweeping out and down -->
+    <g id="sp-wing">
+      <use href="#sp-feather" transform="translate(120 98) rotate(16) scale(1 1.2)"/>
+      <use href="#sp-feather" transform="translate(120 98) rotate(36) scale(1 1.08)"/>
+      <use href="#sp-feather" transform="translate(120 98) rotate(56) scale(0.98 0.98)"/>
+      <use href="#sp-feather" transform="translate(120 98) rotate(77) scale(0.92 0.86)"/>
+      <use href="#sp-feather" transform="translate(120 98) rotate(98) scale(0.86 0.74)"/>
+      <use href="#sp-feather" transform="translate(120 98) rotate(119) scale(0.8 0.62)"/>
+    </g>
+  </defs>
+
+  <!-- wings (right + mirrored left) -->
+  <use href="#sp-wing"/>
+  <use href="#sp-wing" transform="translate(240 0) scale(-1 1)"/>
+
+  <!-- flame crest: central tongue + two side tongues -->
+  <path d="M120 94 C 108 72 117 53 120 28 C 123 53 132 72 120 94 Z"/>
+  <path d="M120 90 C 128 75 134 62 136 47 C 134 66 128 79 120 90 Z"/>
+  <path d="M120 90 C 112 75 106 62 104 47 C 106 66 112 79 120 90 Z"/>
+
+  <!-- lion face: abstract, symmetric -->
+  <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M126 114 L 141 108"/>   <!-- right brow -->
+    <path d="M114 114 L 99 108"/>    <!-- left brow -->
+    <path d="M120 139 L 120 161"/>   <!-- muzzle ridge -->
+    <path d="M111 163 L 120 173 L 129 163"/> <!-- chin -->
   </g>
-  <!-- Wordmark -->
-  <text x="78" y="32" dominant-baseline="central"
-        font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
-        font-size="32" font-weight="600" letter-spacing="6" fill="currentColor">SAHLI</text>
+  <!-- eyes -->
+  <path d="M127 122 Q 133 116 141 122 Q 133 126 127 122 Z"/>
+  <path d="M113 122 Q 107 116 99 122 Q 107 126 113 122 Z"/>
+  <!-- nose -->
+  <path d="M120 141 L 112 130 Q 120 126 128 130 Z"/>
 </svg>
