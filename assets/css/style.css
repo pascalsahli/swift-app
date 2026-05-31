@@ -186,6 +186,12 @@ p  { margin: 0 0 1.1em; }
 .post-list .d { color: var(--muted); font-size: .88rem; white-space: nowrap; }
 .post-list a.post:hover .t { color: var(--accent-dk); }
 
+/* Clients list */
+.clients { border-top: 1px solid var(--line); }
+.client { padding: 26px 0; border-bottom: 1px solid var(--line); }
+.client h3 { margin: 0 0 .35em; }
+.client p { margin: 0; color: var(--ink-soft); }
+
 /* Back link + legal prose */
 .back-link { display: inline-block; margin-bottom: 26px; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; }
 .legal h3 { margin-top: 1.8em; }
