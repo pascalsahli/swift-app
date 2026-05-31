@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 200" fill="currentColor" role="img" aria-label="Sahli & Partner">
+  <defs>
+    <path id="c-ft" d="M0 0 C 3.2 -10 3.4 -26 0 -42 C -3.4 -26 -3.2 -10 0 0 Z"/>
+    <g id="c-wing">
+      <use href="#c-ft" transform="translate(130 86) rotate(30) scale(1 1.1)"/>
+      <use href="#c-ft" transform="translate(130 86) rotate(50) scale(0.95 0.96)"/>
+      <use href="#c-ft" transform="translate(130 86) rotate(70) scale(0.9 0.82)"/>
+      <use href="#c-ft" transform="translate(130 86) rotate(90) scale(0.84 0.68)"/>
+    </g>
+  </defs>
+  <!-- wings cresting the shield -->
+  <use href="#c-wing"/>
+  <use href="#c-wing" transform="translate(260 0) scale(-1 1)"/>
+  <!-- shield -->
+  <path d="M130 78 L 178 92 V 130 C 178 158 156 174 130 184 C 104 174 82 158 82 130 V 92 Z"
+        fill="none" stroke="currentColor" stroke-width="3.4"/>
+  <!-- monogram S&P -->
+  <text x="130" y="132" text-anchor="middle" dominant-baseline="central"
+        font-family="'Playfair Display', Georgia, serif" font-size="30" font-weight="600"
+        letter-spacing="1" fill="currentColor">S&amp;P</text>
+</svg>

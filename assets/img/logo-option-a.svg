@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 200" fill="currentColor" role="img" aria-label="Sahli & Partner">
+  <defs>
+    <path id="a-ft" d="M0 0 C 3.4 -11 3.6 -28 0 -46 C -3.6 -28 -3.4 -11 0 0 Z"/>
+    <g id="a-wing">
+      <use href="#a-ft" transform="translate(130 98) rotate(22) scale(1 1.18)"/>
+      <use href="#a-ft" transform="translate(130 98) rotate(40) scale(1 1.04)"/>
+      <use href="#a-ft" transform="translate(130 98) rotate(58) scale(0.94 0.9)"/>
+      <use href="#a-ft" transform="translate(130 98) rotate(76) scale(0.88 0.78)"/>
+      <use href="#a-ft" transform="translate(130 98) rotate(94) scale(0.82 0.66)"/>
+    </g>
+  </defs>
+  <!-- spread angel wings -->
+  <use href="#a-wing"/>
+  <use href="#a-wing" transform="translate(260 0) scale(-1 1)"/>
+  <!-- monogram roundel -->
+  <circle cx="130" cy="132" r="36" fill="none" stroke="currentColor" stroke-width="3"/>
+  <text x="130" y="134" text-anchor="middle" dominant-baseline="central"
+        font-family="'Playfair Display', Georgia, serif" font-size="46" font-weight="600"
+        fill="currentColor">S</text>
+</svg>

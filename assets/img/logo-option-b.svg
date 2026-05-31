@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 200" fill="currentColor" role="img" aria-label="Sahli & Partner">
+  <defs>
+    <path id="b-ft" d="M0 0 C 4 -13 4.2 -34 0 -56 C -4.2 -34 -4 -13 0 0 Z"/>
+    <g id="b-wing">
+      <use href="#b-ft" transform="translate(130 156) rotate(10) scale(1 1.05)"/>
+      <use href="#b-ft" transform="translate(130 156) rotate(28) scale(0.98 0.96)"/>
+      <use href="#b-ft" transform="translate(130 156) rotate(46) scale(0.92 0.84)"/>
+      <use href="#b-ft" transform="translate(130 156) rotate(65) scale(0.86 0.7)"/>
+      <use href="#b-ft" transform="translate(130 156) rotate(84) scale(0.8 0.56)"/>
+    </g>
+  </defs>
+  <!-- ascending wings forming a chalice -->
+  <use href="#b-wing"/>
+  <use href="#b-wing" transform="translate(260 0) scale(-1 1)"/>
+  <!-- central ascending spark -->
+  <path d="M130 150 C 122 120 128 96 130 74 C 132 96 138 120 130 150 Z"/>
+  <!-- halo -->
+  <circle cx="130" cy="48" r="13" fill="none" stroke="currentColor" stroke-width="3"/>
+</svg>
