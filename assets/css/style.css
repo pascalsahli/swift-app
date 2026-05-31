@@ -2,16 +2,16 @@
    Sahli & Partner — classic, serious, bilingual website
    ================================================================= */
 :root {
-  --ink:        #15323d;   /* deep petrol — headings & primary text  */
-  --ink-soft:   #33454d;   /* body text                              */
-  --muted:      #67767c;   /* secondary text                         */
-  --bg:         #ffffff;   /* page background                        */
-  --bg-alt:     #eef3f4;   /* cool light section background          */
-  --petrol:     #143b4a;   /* brand petrol — header                  */
-  --petrol-deep:#0f2d39;   /* darker petrol — footer / CTA           */
-  --accent:     #c19a4e;   /* restrained gold accent                 */
+  --ink:        #16244a;   /* deep navy — headings & primary text     */
+  --ink-soft:   #36425c;   /* body text                                */
+  --muted:      #6b748a;   /* secondary text                           */
+  --bg:         #ffffff;   /* page background                          */
+  --bg-alt:     #eef1f6;   /* cool light section background            */
+  --petrol:     #16244a;   /* brand navy                               */
+  --petrol-deep:#101a36;   /* darker navy — footer / CTA               */
+  --accent:     #c19a4e;   /* restrained gold accent                   */
   --accent-dk:  #9a7a36;
-  --line:       #dde5e7;   /* hairline borders                       */
+  --line:       #e1e4ec;   /* hairline borders                         */
   --line-dark:  rgba(255,255,255,.14);
   --shadow:     0 1px 2px rgba(20,59,74,.05), 0 10px 34px rgba(20,59,74,.07);
 
@@ -58,45 +58,45 @@ p  { margin: 0 0 1.1em; }
    ================================================================= */
 .site-header {
   position: sticky; top: 0; z-index: 50;
-  background: var(--petrol);
-  border-bottom: 1px solid rgba(255,255,255,.08);
+  background: #fff;
+  border-bottom: 1px solid var(--line);
 }
 .nav { display: flex; align-items: center; gap: 24px; height: 86px; }
-.brand { display: flex; align-items: center; gap: 14px; color: #fff; flex: 0 0 auto; }
-.brand .logo-mark { height: 48px; width: auto; color: #fff; }
+.brand { display: flex; align-items: center; gap: 14px; color: var(--ink); flex: 0 0 auto; }
+.brand .logo-mark { height: 46px; width: auto; }
 .brand .wordmark {
   font-family: var(--serif);
   font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--ink);
   white-space: nowrap;
 }
 
 .nav-links { list-style: none; display: flex; gap: 28px; margin: 0 0 0 auto; padding: 0; }
 .nav-links a {
   font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
-  color: rgba(255,255,255,.82); font-weight: 500; padding: 6px 0; position: relative;
+  color: var(--ink-soft); font-weight: 500; padding: 6px 0; position: relative;
 }
 .nav-links a::after {
   content: ""; position: absolute; left: 0; bottom: 0;
   width: 0; height: 2px; background: var(--accent); transition: width .25s ease;
 }
-.nav-links a:hover { color: #fff; }
+.nav-links a:hover { color: var(--ink); }
 .nav-links a:hover::after, .nav-links a.is-active::after { width: 100%; }
-.nav-links a.is-active { color: #fff; }
+.nav-links a.is-active { color: var(--ink); }
 
 .lang-switch { display: flex; align-items: center; gap: 2px; font-size: .76rem; letter-spacing: .06em; flex: 0 0 auto; }
 .lang-switch button {
-  background: none; border: none; cursor: pointer; color: rgba(255,255,255,.55);
+  background: none; border: none; cursor: pointer; color: var(--muted);
   font: inherit; font-weight: 600; padding: 4px 6px; border-radius: var(--radius); transition: color .2s ease;
 }
-.lang-switch button.is-active { color: #fff; }
-.lang-switch .sep { color: rgba(255,255,255,.3); }
+.lang-switch button.is-active { color: var(--ink); }
+.lang-switch .sep { color: var(--line); }
 
 .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; margin-left: 4px; }
-.nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: .25s ease; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: var(--ink); margin: 5px 0; transition: .25s ease; }
 
 /* =================================================================
    Buttons
@@ -243,12 +243,12 @@ p  { margin: 0 0 1.1em; }
   .nav-toggle { display: block; order: 3; }
   .nav-links {
     position: absolute; top: 86px; left: 0; right: 0; flex-direction: column; gap: 0;
-    background: var(--petrol); border-bottom: 1px solid rgba(255,255,255,.1); padding: 8px 0;
+    background: #fff; border-bottom: 1px solid var(--line); padding: 8px 0;
     box-shadow: var(--shadow); max-height: 0; overflow: hidden; transition: max-height .3s ease;
   }
   .nav-links.is-open { max-height: 420px; }
   .nav-links li { padding: 0 24px; }
-  .nav-links a { display: block; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .nav-links a { display: block; padding: 14px 0; border-bottom: 1px solid var(--line); }
   .nav-links li:last-child a { border-bottom: 0; }
   .nav-links a::after { display: none; }
 }

@@ -15,7 +15,7 @@ window.SAHLI_I18N = {
     "cta.contact":   "Kontakt aufnehmen",
     "cta.exec":      "Executive Mandate",
     "cta.more":      "Mehr erfahren",
-    "footer.tagline":  "Management- und Investment-Mandate, die Hindernisse beseitigen und Ergebnisse schaffen.",
+    "footer.tagline":  "Executive Advisory & Strategic Investments",
     "footer.nav":      "Navigation",
     "footer.contact":  "Kontakt",
     "footer.rights":   "Alle Rechte vorbehalten.",
@@ -25,7 +25,7 @@ window.SAHLI_I18N = {
 
     /* --- home --- */
     "home.title":        "Sahli & Partner",
-    "home.hero.eyebrow": "Sahli & Partner",
+    "home.hero.eyebrow": "Sahli Partners",
     "home.hero.title":   "Engel, die für Sie arbeiten",
     "home.hero.lead":    "Management- und Investment-Mandate, die Hindernisse beseitigen und Ihre Geschäftsziele konsequent vorantreiben.",
     "home.p1":  "Wussten Sie schon?",
@@ -161,7 +161,7 @@ window.SAHLI_I18N = {
     "cta.contact":   "Get in touch",
     "cta.exec":      "Executive Mandates",
     "cta.more":      "Learn more",
-    "footer.tagline":  "Management and investment mandates that remove obstacles and drive results.",
+    "footer.tagline":  "Executive Advisory & Strategic Investments",
     "footer.nav":      "Navigation",
     "footer.contact":  "Contact",
     "footer.rights":   "All rights reserved.",
@@ -171,7 +171,7 @@ window.SAHLI_I18N = {
 
     /* --- home --- */
     "home.title":        "Sahli & Partner",
-    "home.hero.eyebrow": "Sahli & Partner",
+    "home.hero.eyebrow": "Sahli Partners",
     "home.hero.title":   "Angels working for you",
     "home.hero.lead":    "Management and investment mandates that remove obstacles and drive your business objectives.",
     "home.p1":  "did you know?",
