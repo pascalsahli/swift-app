@@ -1,39 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="currentColor" role="img" aria-label="Sahli & Partner">
-  <defs>
-    <!-- single blade / feather, tip pointing up from its base at the origin -->
-    <path id="sp-blade" d="M0 0 C 3.6 -13 3.8 -32 0 -52 C -3.8 -32 -3.6 -13 0 0 Z"/>
-    <!-- right mane: a fan of blades sweeping up-and-out, lower ones curving down -->
-    <g id="sp-mane">
-      <use href="#sp-blade" transform="translate(120 102) rotate(13) scale(1 1.26)"/>
-      <use href="#sp-blade" transform="translate(120 102) rotate(31) scale(1 1.12)"/>
-      <use href="#sp-blade" transform="translate(120 102) rotate(51) scale(0.97 0.99)"/>
-      <use href="#sp-blade" transform="translate(120 102) rotate(73) scale(0.9 0.85)"/>
-      <use href="#sp-blade" transform="translate(120 102) rotate(96) scale(0.84 0.72)"/>
-      <use href="#sp-blade" transform="translate(120 102) rotate(119) scale(0.78 0.6)"/>
-    </g>
-  </defs>
-
-  <!-- mane / wings (right + mirrored left) -->
-  <use href="#sp-mane"/>
-  <use href="#sp-mane" transform="translate(240 0) scale(-1 1)"/>
-
-  <!-- flame crest: central tongue + two curling side tongues -->
-  <path d="M120 96 C 107 74 116 52 120 24 C 124 52 133 74 120 96 Z"/>
-  <path d="M120 92 C 130 78 137 64 138 47 C 135 67 128 80 120 92 Z"/>
-  <path d="M120 92 C 110 78 103 64 102 47 C 105 67 112 80 120 92 Z"/>
-
-  <!-- lion face -->
-  <g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M126 116 L 143 110"/>           <!-- right brow -->
-    <path d="M114 116 L 97 110"/>            <!-- left brow -->
-    <path d="M120 142 L 120 163"/>           <!-- muzzle ridge -->
-    <path d="M109 164 L 120 176 L 131 164"/> <!-- pointed chin -->
-    <path d="M139 129 Q 141 151 127 167"/>   <!-- right cheek -->
-    <path d="M101 129 Q 99 151 113 167"/>    <!-- left cheek -->
-  </g>
-  <!-- eyes (angled almonds) -->
-  <path d="M125 125 Q 133 116 142 120 Q 134 127 125 125 Z"/>
-  <path d="M115 125 Q 107 116 98 120 Q 106 127 115 125 Z"/>
-  <!-- nose -->
-  <path d="M120 143 L 111 131 Q 120 127 129 131 Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="46 80 168 76" fill="currentColor" role="img" aria-label="Sahli & Partner">
+  <g transform="translate(130 150)"><path d="M0 0 C 18 -34 44 -58 80 -66 C 74 -57 67 -53 61 -51 C 68 -47 67 -39 58 -40 C 62 -36 60 -29 51 -31 C 55 -27 52 -20 43 -23 C 47 -18 43 -12 34 -15 C 37 -10 32 -5 24 -9 C 16 -5 9 -3 0 0 Z"/></g>
+  <g transform="translate(130 150) scale(-1 1)"><path d="M0 0 C 18 -34 44 -58 80 -66 C 74 -57 67 -53 61 -51 C 68 -47 67 -39 58 -40 C 62 -36 60 -29 51 -31 C 55 -27 52 -20 43 -23 C 47 -18 43 -12 34 -15 C 37 -10 32 -5 24 -9 C 16 -5 9 -3 0 0 Z"/></g>
 </svg>
