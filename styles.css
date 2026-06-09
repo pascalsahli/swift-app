@@ -63,6 +63,15 @@ body {
   font-size: 15px;
 }
 
+.brand-sub {
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0.5;
+  border-left: 1px solid currentColor;
+  padding-left: 10px;
+  margin-left: 2px;
+}
+
 .brand-mark {
   display: inline-flex;
   align-items: center;
