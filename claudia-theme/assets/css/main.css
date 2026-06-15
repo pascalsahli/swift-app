@@ -108,6 +108,11 @@ h1, h2, h3, h4 {
 .featured__media { overflow: hidden; border-radius: var(--radius); box-shadow: var(--shadow); }
 .featured__media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .6s ease; }
 .featured__media:hover img { transform: scale(1.03); }
+.featured__grid--noimage {
+  grid-template-columns: 1fr; max-width: 780px; margin: 0 auto; text-align: center;
+}
+.featured__grid--noimage .featured__excerpt { max-width: 52ch; margin-left: auto; margin-right: auto; }
+.featured__grid--noimage .meta { justify-content: center; }
 .featured__title { font-size: clamp(34px, 5vw, 54px); margin: 14px 0 16px; }
 .featured__excerpt { color: var(--ink-soft); font-size: 19px; max-width: 38ch; }
 .meta { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--muted); margin-top: 18px; }

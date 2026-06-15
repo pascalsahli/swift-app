@@ -17,7 +17,7 @@ get_header();
 		the_post();
 		?>
 		<section class="featured wrap">
-			<div class="featured__grid">
+			<div class="featured__grid<?php echo has_post_thumbnail() ? '' : ' featured__grid--noimage'; ?>">
 				<?php if ( has_post_thumbnail() ) : ?>
 					<a class="featured__media" href="<?php the_permalink(); ?>">
 						<?php the_post_thumbnail( 'large', array( 'alt' => the_title_attribute( array( 'echo' => false ) ) ) ); ?>
