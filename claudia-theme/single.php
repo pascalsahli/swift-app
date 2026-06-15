@@ -58,6 +58,8 @@ while ( have_posts() ) :
 		<?php
 	endif;
 
+	get_template_part( 'template-parts/newsletter' );
+
 endwhile;
 
 get_footer();

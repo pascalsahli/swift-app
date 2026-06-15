@@ -74,10 +74,12 @@
 			<span class="eyebrow">Newsletter</span>
 			<h2>Mochtest du diese Geschichte?</h2>
 			<p>Dann abonniere meinen Brief aus der Ferne – die nächste Geschichte kommt bestimmt.</p>
-			<form class="subscribe" onsubmit="return false;">
-				<input type="email" placeholder="deine@email.ch" aria-label="E-Mail-Adresse">
+			<form class="subscribe" data-demo>
+				<input type="email" placeholder="deine@email.ch" aria-label="E-Mail-Adresse" required>
+				<input type="text" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
 				<button class="btn" type="submit">Abonnieren</button>
 			</form>
+			<p class="subscribe__note">Keine Weitergabe deiner Daten. Abmeldung jederzeit möglich.</p>
 		</div>
 	</section>
 </main>

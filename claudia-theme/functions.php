@@ -45,6 +45,9 @@ if ( ! function_exists( 'claudia_editorial_setup' ) ) {
 }
 add_action( 'after_setup_theme', 'claudia_editorial_setup' );
 
+// E-mail subscription / newsletter feature.
+require get_template_directory() . '/inc/newsletter.php';
+
 /**
  * Enqueue styles, fonts and scripts.
  */

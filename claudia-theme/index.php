@@ -59,6 +59,8 @@ get_header();
 		?>
 	</section>
 
+	<?php get_template_part( 'template-parts/newsletter' ); ?>
+
 <?php else : ?>
 
 	<section class="section wrap">

@@ -34,6 +34,23 @@ nur die Optik wird ausgetauscht.
   (Seitenattribute), ein Beitragsbild als Porträt setzen und den Auszug als
   Lead-Satz nutzen.
 
+## E-Mail-Anmeldung (Newsletter)
+
+Besucher können sich mit ihrer E-Mail-Adresse eintragen. Das Anmelde-Band
+erscheint automatisch auf der Blog-Übersicht und unter jedem Beitrag. Per
+Shortcode lässt es sich überall einfügen:
+
+```
+[claudia_subscribe heading="Bleib auf dem Laufenden"]
+```
+
+- Die Adressen werden in der Datenbank gespeichert (mit Honeypot-Spamschutz).
+- Übersicht & Verwaltung: WordPress-Admin → **Newsletter**.
+- Dort lässt sich die Liste auch als **CSV exportieren**.
+- Hinweis: Das Theme *sammelt* Adressen. Zum *Versenden* von Newslettern die
+  CSV-Liste in einen Dienst importieren oder ein Sende-Plugin (z. B. MailPoet)
+  ergänzen.
+
 ## Aufbau
 
 ```
@@ -50,8 +67,11 @@ claudia-theme/
 ├── 404.php
 ├── searchform.php
 ├── comments.php
+├── inc/
+│   └── newsletter.php   E-Mail-Anmeldung: Formular, Speicherung, Admin + Export
 ├── template-parts/
-│   └── content.php      Beitrags-Kachel
+│   ├── content.php      Beitrags-Kachel
+│   └── newsletter.php   Anmelde-Band für die Templates
 └── assets/
     ├── css/main.css     Das gesamte Design (von Theme + Vorschau genutzt)
     └── js/main.js       Mobiles Menü

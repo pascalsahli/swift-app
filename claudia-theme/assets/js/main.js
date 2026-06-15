@@ -18,3 +18,21 @@
     }
   });
 })();
+
+/* Demo-only: simulate the newsletter signup in the static preview.
+   On the real WordPress site the form posts to the server instead. */
+(function () {
+  document.querySelectorAll('form.subscribe[data-demo]').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var input = form.querySelector('input[type="email"]');
+      if (input && !input.value) { input.focus(); return; }
+      var msg = document.createElement('p');
+      msg.className = 'form-message is-success';
+      msg.textContent = 'Vielen Dank! Du bist jetzt angemeldet. (Demo-Vorschau)';
+      form.parentNode.insertBefore(msg, form);
+      form.reset();
+      form.style.display = 'none';
+    });
+  });
+})();
