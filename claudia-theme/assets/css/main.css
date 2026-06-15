@@ -75,7 +75,12 @@ h1, h2, h3, h4 {
   display: flex; align-items: center; justify-content: space-between;
   gap: 24px; padding: 22px 24px; max-width: var(--wrap); margin: 0 auto;
 }
-.site-brand { text-align: left; }
+.site-brand { text-align: left; display: flex; align-items: center; gap: 16px; }
+.site-brand__avatar {
+  flex: 0 0 auto; width: 56px; height: 56px; border-radius: 50%; overflow: hidden;
+  border: 1px solid var(--line); box-shadow: 0 4px 14px -8px rgba(28,26,23,.5);
+}
+.site-brand__avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; }
 .site-brand__title {
   font-family: var(--serif); font-size: 30px; font-weight: 600;
   letter-spacing: .5px; margin: 0; line-height: 1; color: var(--ink);
@@ -233,7 +238,8 @@ h1, h2, h3, h4 {
 }
 .about-portrait { position: relative; }
 .about-portrait img {
-  width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow);
+  width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%;
+  border-radius: var(--radius); box-shadow: var(--shadow);
 }
 .about-portrait::after {
   content: ""; position: absolute; inset: 16px -16px -16px 16px; border: 1px solid var(--accent);

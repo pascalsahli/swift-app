@@ -22,15 +22,20 @@
 <header class="site-header">
 	<div class="site-header__inner">
 		<div class="site-brand">
-			<?php if ( has_custom_logo() ) : ?>
-				<?php the_custom_logo(); ?>
-			<?php else : ?>
-				<p class="site-brand__title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></p>
-				<?php $desc = get_bloginfo( 'description', 'display' ); ?>
-				<?php if ( $desc ) : ?>
-					<div class="site-brand__tagline"><?php echo esc_html( $desc ); ?></div>
+			<a class="site-brand__avatar" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-hidden="true" tabindex="-1">
+				<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/claudia.jpg' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="56" height="56">
+			</a>
+			<div class="site-brand__text">
+				<?php if ( has_custom_logo() ) : ?>
+					<?php the_custom_logo(); ?>
+				<?php else : ?>
+					<p class="site-brand__title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></p>
+					<?php $desc = get_bloginfo( 'description', 'display' ); ?>
+					<?php if ( $desc ) : ?>
+						<div class="site-brand__tagline"><?php echo esc_html( $desc ); ?></div>
+					<?php endif; ?>
 				<?php endif; ?>
-			<?php endif; ?>
+			</div>
 		</div>
 
 		<button class="nav-toggle" aria-label="<?php esc_attr_e( 'Menü', 'claudia-editorial' ); ?>" aria-expanded="false" aria-controls="primary-nav">☰</button>

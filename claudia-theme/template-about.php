@@ -31,9 +31,13 @@ while ( have_posts() ) :
 	<article <?php post_class(); ?>>
 		<section class="about-intro wrap">
 			<div class="about-intro__grid">
-				<?php if ( claudia_has_image() ) : ?>
-					<div class="about-portrait"><?php echo claudia_image( 'large' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
-				<?php endif; ?>
+				<div class="about-portrait">
+					<?php if ( claudia_has_image() ) : ?>
+						<?php echo claudia_image( 'large' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+					<?php else : ?>
+						<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/claudia.jpg' ); ?>" alt="<?php the_title_attribute(); ?>">
+					<?php endif; ?>
+				</div>
 				<div class="about-intro__body">
 					<span class="eyebrow"><?php esc_html_e( 'Über mich', 'claudia-editorial' ); ?></span>
 					<h1 class="post-hero__title" style="text-align:left;margin-top:8px;"><?php the_title(); ?></h1>
