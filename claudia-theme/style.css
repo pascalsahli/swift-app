@@ -1,0 +1,34 @@
+/*
+Theme Name: Claudia Editorial
+Theme URI: https://claudia.sahli.com
+Author: Claudia Sahli
+Description: Ein elegantes, modernes Magazin-Theme für Reise- und Lifestyle-Blogs. Neutrale, edle Farbpalette mit dezentem Goldakzent, grosse Typografie und ein responsives Layout. Speziell für Claudia's Blog entwickelt.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.5
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: claudia-editorial
+Tags: blog, travel, elegant, two-columns, custom-menu, featured-images, translation-ready
+*/
+
+/*
+ * The full visual styles live in assets/css/main.css (shared with the static
+ * preview) and are loaded via functions.php. This file only provides the
+ * required WordPress theme header plus small WordPress-specific helpers.
+ */
+
+/* Alignment helpers for the WordPress block / classic editor output */
+.aligncenter { display: block; margin-left: auto; margin-right: auto; }
+.alignleft  { float: left;  margin: 6px 24px 16px 0; }
+.alignright { float: right; margin: 6px 0 16px 24px; }
+.wp-caption { max-width: 100%; }
+.wp-caption-text { font-size: 14px; color: var(--muted); text-align: center; margin-top: 8px; }
+.sticky, .gallery-caption, .bypostauthor { display: block; }
+.screen-reader-text {
+  border: 0; clip: rect(1px, 1px, 1px, 1px); clip-path: inset(50%);
+  height: 1px; width: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute;
+}
+.admin-bar .site-header { top: 32px; }
+@media (max-width: 782px) { .admin-bar .site-header { top: 46px; } }
