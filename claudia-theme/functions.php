@@ -117,6 +117,53 @@ function claudia_editorial_widgets() {
 add_action( 'widgets_init', 'claudia_editorial_widgets' );
 
 /**
+ * Find the URL of the first image inside a post's content.
+ *
+ * @param int|WP_Post|null $post Optional post.
+ * @return string Image URL or empty string.
+ */
+function claudia_first_content_image_url( $post = null ) {
+	$post = get_post( $post );
+	if ( ! $post ) {
+		return '';
+	}
+	if ( preg_match( '/<img[^>]+src=["\']([^"\']+)["\']/i', $post->post_content, $m ) ) {
+		return $m[1];
+	}
+	return '';
+}
+
+/**
+ * Whether a post has any usable image (featured image OR a content image).
+ *
+ * @param int|WP_Post|null $post Optional post.
+ * @return bool
+ */
+function claudia_has_image( $post = null ) {
+	return has_post_thumbnail( $post ) || '' !== claudia_first_content_image_url( $post );
+}
+
+/**
+ * Output an <img> for a post: the featured image if set, otherwise the first
+ * image found in the post content. Saves setting a featured image on every post.
+ *
+ * @param string           $size Image size for the featured image.
+ * @param int|WP_Post|null $post Optional post.
+ * @return string HTML <img> or empty string.
+ */
+function claudia_image( $size = 'large', $post = null ) {
+	$post = get_post( $post );
+	if ( has_post_thumbnail( $post ) ) {
+		return get_the_post_thumbnail( $post, $size, array( 'alt' => the_title_attribute( array( 'echo' => false, 'post' => $post ) ) ) );
+	}
+	$url = claudia_first_content_image_url( $post );
+	if ( $url ) {
+		return '<img src="' . esc_url( $url ) . '" alt="' . esc_attr( get_the_title( $post ) ) . '" loading="lazy">';
+	}
+	return '';
+}
+
+/**
  * Estimated reading time for a post (in minutes).
  *
  * @param int|null $post_id Optional post ID.

@@ -7,9 +7,9 @@
 
 ?>
 <article <?php post_class( 'post-card' ); ?>>
-	<?php if ( has_post_thumbnail() ) : ?>
+	<?php if ( claudia_has_image() ) : ?>
 		<a class="post-card__media" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
-			<?php the_post_thumbnail( 'medium_large', array( 'alt' => the_title_attribute( array( 'echo' => false ) ) ) ); ?>
+			<?php echo claudia_image( 'medium_large' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		</a>
 	<?php endif; ?>
 

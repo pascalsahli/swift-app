@@ -17,10 +17,10 @@ get_header();
 		the_post();
 		?>
 		<section class="featured wrap">
-			<div class="featured__grid<?php echo has_post_thumbnail() ? '' : ' featured__grid--noimage'; ?>">
-				<?php if ( has_post_thumbnail() ) : ?>
+			<div class="featured__grid<?php echo claudia_has_image() ? '' : ' featured__grid--noimage'; ?>">
+				<?php if ( claudia_has_image() ) : ?>
 					<a class="featured__media" href="<?php the_permalink(); ?>">
-						<?php the_post_thumbnail( 'large', array( 'alt' => the_title_attribute( array( 'echo' => false ) ) ) ); ?>
+						<?php echo claudia_image( 'large' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</a>
 				<?php endif; ?>
 				<div class="featured__body">

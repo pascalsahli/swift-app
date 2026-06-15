@@ -25,7 +25,9 @@ nur die Optik wird ausgetauscht.
 - **Menü setzen:** Design → Menüs → ein Menü erstellen und der Position
   „Hauptmenü“ zuweisen.
 - **Beitragsbilder:** Pro Beitrag ein „Beitragsbild“ festlegen – das Theme
-  setzt diese gross in Szene (Startseite, Beitragskopf).
+  setzt diese gross in Szene (Startseite, Beitragskopf). Ist kein Beitragsbild
+  gesetzt, nimmt das Theme automatisch das **erste Bild aus dem Beitragstext**
+  als Vorschaubild – bestehende Beiträge müssen also nicht angefasst werden.
 - **Logo/Titel:** Design → Customizer → Website-Informationen
   (Titel „Claudia's Blog“, Untertitel „Meine Geschichten und so vieles mehr“).
 - **Sprechende URLs:** Einstellungen → Permalinks → „Beitragsname“ wählen
