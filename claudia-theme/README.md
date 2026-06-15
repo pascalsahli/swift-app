@@ -30,6 +30,9 @@ nur die Optik wird ausgetauscht.
   (Titel „Claudia's Blog“, Untertitel „Meine Geschichten und so vieles mehr“).
 - **Sprechende URLs:** Einstellungen → Permalinks → „Beitragsname“ wählen
   (statt der alten `?p=123`-Links) – besser für Leser und SEO.
+- **„Über mich“-Seite:** Seiten → Erstellen → Vorlage „Über mich“ wählen
+  (Seitenattribute), ein Beitragsbild als Porträt setzen und den Auszug als
+  Lead-Satz nutzen.
 
 ## Aufbau
 
@@ -41,6 +44,7 @@ claudia-theme/
 ├── index.php            Blog-Übersicht (mit Featured-Beitrag)
 ├── single.php           Einzelner Beitrag
 ├── page.php             Statische Seite
+├── template-about.php   Seitenvorlage "Über mich" (Porträt + Bio + Zahlen)
 ├── archive.php          Kategorie/Tag/Datum-Archive
 ├── search.php           Suchergebnisse
 ├── 404.php
