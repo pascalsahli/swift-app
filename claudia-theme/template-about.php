@@ -31,8 +31,8 @@ while ( have_posts() ) :
 	<article <?php post_class(); ?>>
 		<section class="about-intro wrap">
 			<div class="about-intro__grid">
-				<?php if ( has_post_thumbnail() ) : ?>
-					<div class="about-portrait"><?php the_post_thumbnail( 'large' ); ?></div>
+				<?php if ( claudia_has_image() ) : ?>
+					<div class="about-portrait"><?php echo claudia_image( 'large' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 				<?php endif; ?>
 				<div class="about-intro__body">
 					<span class="eyebrow"><?php esc_html_e( 'Über mich', 'claudia-editorial' ); ?></span>
