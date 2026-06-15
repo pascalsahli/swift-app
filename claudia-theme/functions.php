@@ -38,6 +38,19 @@ if ( ! function_exists( 'claudia_editorial_setup' ) ) {
 			)
 		);
 
+		// Jetpack compatibility: responsive videos and content options.
+		add_theme_support( 'jetpack-responsive-videos' );
+		add_theme_support(
+			'jetpack-content-options',
+			array(
+				'blog-display' => 'content',
+				'post-details' => array(
+					'stylesheet' => 'claudia-editorial-main',
+					'date'       => '.meta time',
+				),
+			)
+		);
+
 		// Nicer excerpts.
 		add_filter( 'excerpt_length', function () { return 26; } );
 		add_filter( 'excerpt_more', function () { return '…'; } );
