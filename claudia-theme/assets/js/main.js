@@ -29,7 +29,7 @@
       if (input && !input.value) { input.focus(); return; }
       var msg = document.createElement('p');
       msg.className = 'form-message is-success';
-      msg.textContent = 'Vielen Dank! Du bist jetzt angemeldet. (Demo-Vorschau)';
+      msg.textContent = 'Fast geschafft! Wir haben dir eine Bestätigungs-E-Mail geschickt – bitte klicke auf den Link darin. (Demo-Vorschau)';
       form.parentNode.insertBefore(msg, form);
       form.reset();
       form.style.display = 'none';

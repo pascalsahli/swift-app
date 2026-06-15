@@ -26,7 +26,15 @@ function claudia_subscribers_table() {
 }
 
 /**
- * Create the subscribers table on theme activation.
+ * Database schema version. Bump to trigger an upgrade via dbDelta.
+ */
+define( 'CLAUDIA_NEWSLETTER_DB', '1.1' );
+
+/**
+ * Create / upgrade the subscribers table.
+ *
+ * Adds double opt-in columns: a confirmation token and the confirmation time.
+ * dbDelta is idempotent, so this also safely upgrades an existing table.
  */
 function claudia_newsletter_install() {
 	global $wpdb;
@@ -36,16 +44,52 @@ function claudia_newsletter_install() {
 	$sql = "CREATE TABLE $table (
 		id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 		email varchar(190) NOT NULL,
+		status varchar(20) NOT NULL DEFAULT 'pending',
+		token varchar(64) DEFAULT '',
 		created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-		status varchar(20) NOT NULL DEFAULT 'subscribed',
+		confirmed_at datetime DEFAULT NULL,
 		PRIMARY KEY  (id),
 		UNIQUE KEY email (email)
 	) $charset_collate;";
 
 	require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 	dbDelta( $sql );
+	update_option( 'claudia_newsletter_db', CLAUDIA_NEWSLETTER_DB );
 }
 add_action( 'after_switch_theme', 'claudia_newsletter_install' );
+
+/**
+ * Run the upgrade when the stored schema version is out of date.
+ */
+function claudia_newsletter_maybe_upgrade() {
+	if ( get_option( 'claudia_newsletter_db' ) !== CLAUDIA_NEWSLETTER_DB ) {
+		claudia_newsletter_install();
+	}
+}
+add_action( 'admin_init', 'claudia_newsletter_maybe_upgrade' );
+
+/**
+ * Send the double opt-in confirmation e-mail to a subscriber.
+ *
+ * @param string $email Recipient.
+ * @param string $token Confirmation token.
+ */
+function claudia_send_confirmation( $email, $token ) {
+	$site    = get_bloginfo( 'name' );
+	$confirm = add_query_arg( 'claudia_confirm', rawurlencode( $token ), home_url( '/' ) );
+	$subject = sprintf( __( 'Bitte bestätige deine Anmeldung bei %s', 'claudia-editorial' ), $site );
+
+	$body  = '<div style="font-family:Georgia,serif;font-size:16px;line-height:1.6;color:#1c1a17;">';
+	$body .= '<p>' . esc_html__( 'Schön, dass du dabei sein möchtest!', 'claudia-editorial' ) . '</p>';
+	$body .= '<p>' . esc_html__( 'Bitte bestätige deine E-Mail-Adresse mit einem Klick auf den folgenden Link:', 'claudia-editorial' ) . '</p>';
+	$body .= '<p><a href="' . esc_url( $confirm ) . '" style="display:inline-block;background:#1c1a17;color:#fff;padding:12px 22px;text-decoration:none;border-radius:2px;">' . esc_html__( 'Anmeldung bestätigen', 'claudia-editorial' ) . '</a></p>';
+	$body .= '<p style="font-size:13px;color:#726c63;">' . esc_html__( 'Falls du dich nicht angemeldet hast, ignoriere diese E-Mail einfach – es passiert dann nichts.', 'claudia-editorial' ) . '</p>';
+	$body .= '<p style="font-size:13px;color:#726c63;">' . esc_html( $site ) . '</p>';
+	$body .= '</div>';
+
+	$headers = array( 'Content-Type: text/html; charset=UTF-8' );
+	wp_mail( $email, $subject, $body, $headers );
+}
 
 /**
  * Render the subscription band/form.
@@ -67,11 +111,16 @@ function claudia_subscribe_form( $args = array() ) {
 	$state   = isset( $_GET['claudia_sub'] ) ? sanitize_key( wp_unslash( $_GET['claudia_sub'] ) ) : '';
 	$message = '';
 	$is_ok   = false;
-	if ( 'success' === $state ) {
-		$message = __( 'Vielen Dank! Du bist jetzt angemeldet.', 'claudia-editorial' );
+	if ( 'pending' === $state ) {
+		$message = __( 'Fast geschafft! Wir haben dir eine Bestätigungs-E-Mail geschickt. Bitte klicke auf den Link darin, um deine Anmeldung abzuschliessen.', 'claudia-editorial' );
+		$is_ok   = true;
+	} elseif ( 'confirmed' === $state ) {
+		$message = __( 'Vielen Dank! Deine Anmeldung ist jetzt bestätigt.', 'claudia-editorial' );
 		$is_ok   = true;
 	} elseif ( 'exists' === $state ) {
 		$message = __( 'Diese Adresse ist bereits angemeldet.', 'claudia-editorial' );
+	} elseif ( 'confirm_invalid' === $state ) {
+		$message = __( 'Dieser Bestätigungslink ist ungültig oder abgelaufen.', 'claudia-editorial' );
 	} elseif ( 'invalid' === $state ) {
 		$message = __( 'Bitte gib eine gültige E-Mail-Adresse ein.', 'claudia-editorial' );
 	}
@@ -146,36 +195,98 @@ function claudia_handle_subscribe() {
 	}
 
 	global $wpdb;
-	$table  = claudia_subscribers_table();
-	$exists = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $table WHERE email = %s", $email ) ); // phpcs:ignore WordPress.DB
+	$table    = claudia_subscribers_table();
+	$existing = $wpdb->get_row( $wpdb->prepare( "SELECT id, status, token FROM $table WHERE email = %s", $email ) ); // phpcs:ignore WordPress.DB
 
-	if ( $exists ) {
+	if ( $existing && 'confirmed' === $existing->status ) {
+		// Already a confirmed subscriber.
 		wp_safe_redirect( add_query_arg( 'claudia_sub', 'exists', $redirect ) . '#newsletter' );
 		exit;
 	}
 
-	$wpdb->insert( // phpcs:ignore WordPress.DB
-		$table,
-		array(
-			'email'      => $email,
-			'created_at' => current_time( 'mysql' ),
-			'status'     => 'subscribed',
-		),
-		array( '%s', '%s', '%s' )
-	);
+	$token = wp_generate_password( 32, false );
 
-	// Notify the site admin (best effort).
-	wp_mail(
-		get_option( 'admin_email' ),
-		__( 'Neue Newsletter-Anmeldung', 'claudia-editorial' ),
-		sprintf( __( 'Neue Anmeldung: %s', 'claudia-editorial' ), $email )
-	);
+	if ( $existing ) {
+		// Pending sign-up: refresh the token and resend the confirmation.
+		$wpdb->update( // phpcs:ignore WordPress.DB
+			$table,
+			array(
+				'token'      => $token,
+				'created_at' => current_time( 'mysql' ),
+			),
+			array( 'id' => $existing->id ),
+			array( '%s', '%s' ),
+			array( '%d' )
+		);
+	} else {
+		$wpdb->insert( // phpcs:ignore WordPress.DB
+			$table,
+			array(
+				'email'      => $email,
+				'status'     => 'pending',
+				'token'      => $token,
+				'created_at' => current_time( 'mysql' ),
+			),
+			array( '%s', '%s', '%s', '%s' )
+		);
+	}
 
-	wp_safe_redirect( add_query_arg( 'claudia_sub', 'success', $redirect ) . '#newsletter' );
+	claudia_send_confirmation( $email, $token );
+
+	wp_safe_redirect( add_query_arg( 'claudia_sub', 'pending', $redirect ) . '#newsletter' );
 	exit;
 }
 add_action( 'admin_post_nopriv_claudia_subscribe', 'claudia_handle_subscribe' );
 add_action( 'admin_post_claudia_subscribe', 'claudia_handle_subscribe' );
+
+/**
+ * Handle the confirmation link from the double opt-in e-mail.
+ */
+function claudia_handle_confirm() {
+	if ( empty( $_GET['claudia_confirm'] ) ) {
+		return;
+	}
+
+	$token = sanitize_text_field( rawurldecode( wp_unslash( $_GET['claudia_confirm'] ) ) );
+	$home  = home_url( '/' );
+
+	if ( ! $token ) {
+		wp_safe_redirect( add_query_arg( 'claudia_sub', 'confirm_invalid', $home ) . '#newsletter' );
+		exit;
+	}
+
+	global $wpdb;
+	$table = claudia_subscribers_table();
+	$row   = $wpdb->get_row( $wpdb->prepare( "SELECT id, email FROM $table WHERE token = %s AND status = 'pending'", $token ) ); // phpcs:ignore WordPress.DB
+
+	if ( ! $row ) {
+		wp_safe_redirect( add_query_arg( 'claudia_sub', 'confirm_invalid', $home ) . '#newsletter' );
+		exit;
+	}
+
+	$wpdb->update( // phpcs:ignore WordPress.DB
+		$table,
+		array(
+			'status'       => 'confirmed',
+			'token'        => '',
+			'confirmed_at' => current_time( 'mysql' ),
+		),
+		array( 'id' => $row->id ),
+		array( '%s', '%s', '%s' ),
+		array( '%d' )
+	);
+
+	// Notify the site admin now that the subscription is confirmed.
+	wp_mail(
+		get_option( 'admin_email' ),
+		__( 'Neue bestätigte Newsletter-Anmeldung', 'claudia-editorial' ),
+		sprintf( __( 'Bestätigte Anmeldung: %s', 'claudia-editorial' ), $row->email )
+	);
+
+	wp_safe_redirect( add_query_arg( 'claudia_sub', 'confirmed', $home ) . '#newsletter' );
+	exit;
+}
+add_action( 'template_redirect', 'claudia_handle_confirm' );
 
 /**
  * Admin menu: subscribers overview.
@@ -198,23 +309,26 @@ add_action( 'admin_menu', 'claudia_subscribers_menu' );
  */
 function claudia_subscribers_page() {
 	global $wpdb;
-	$table = claudia_subscribers_table();
-	$rows  = $wpdb->get_results( "SELECT email, created_at FROM $table ORDER BY created_at DESC" ); // phpcs:ignore WordPress.DB
-	$count = is_array( $rows ) ? count( $rows ) : 0;
+	$table     = claudia_subscribers_table();
+	$rows      = $wpdb->get_results( "SELECT email, status, created_at, confirmed_at FROM $table ORDER BY created_at DESC" ); // phpcs:ignore WordPress.DB
+	$confirmed = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $table WHERE status = 'confirmed'" ); // phpcs:ignore WordPress.DB
+	$pending   = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $table WHERE status = 'pending'" ); // phpcs:ignore WordPress.DB
 
 	$export_url = wp_nonce_url( admin_url( 'admin-post.php?action=claudia_export_subscribers' ), 'claudia_export' );
 	?>
 	<div class="wrap">
 		<h1><?php esc_html_e( 'Newsletter-Abonnenten', 'claudia-editorial' ); ?></h1>
 		<p>
-			<?php printf( esc_html__( 'Insgesamt %s Anmeldungen.', 'claudia-editorial' ), '<strong>' . esc_html( number_format_i18n( $count ) ) . '</strong>' ); ?>
-			&nbsp; <a class="button button-primary" href="<?php echo esc_url( $export_url ); ?>"><?php esc_html_e( 'Als CSV exportieren', 'claudia-editorial' ); ?></a>
+			<?php printf( esc_html__( '%1$s bestätigt, %2$s ausstehend (Bestätigung offen).', 'claudia-editorial' ), '<strong>' . esc_html( number_format_i18n( $confirmed ) ) . '</strong>', '<strong>' . esc_html( number_format_i18n( $pending ) ) . '</strong>' ); ?>
+			&nbsp; <a class="button button-primary" href="<?php echo esc_url( $export_url ); ?>"><?php esc_html_e( 'Bestätigte als CSV exportieren', 'claudia-editorial' ); ?></a>
 		</p>
 		<table class="widefat striped">
 			<thead>
 				<tr>
 					<th><?php esc_html_e( 'E-Mail', 'claudia-editorial' ); ?></th>
+					<th><?php esc_html_e( 'Status', 'claudia-editorial' ); ?></th>
 					<th><?php esc_html_e( 'Angemeldet am', 'claudia-editorial' ); ?></th>
+					<th><?php esc_html_e( 'Bestätigt am', 'claudia-editorial' ); ?></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -222,11 +336,13 @@ function claudia_subscribers_page() {
 					<?php foreach ( $rows as $row ) : ?>
 						<tr>
 							<td><?php echo esc_html( $row->email ); ?></td>
+							<td><?php echo 'confirmed' === $row->status ? esc_html__( '✓ bestätigt', 'claudia-editorial' ) : esc_html__( '⏳ ausstehend', 'claudia-editorial' ); ?></td>
 							<td><?php echo esc_html( $row->created_at ); ?></td>
+							<td><?php echo esc_html( $row->confirmed_at ? $row->confirmed_at : '—' ); ?></td>
 						</tr>
 					<?php endforeach; ?>
 				<?php else : ?>
-					<tr><td colspan="2"><?php esc_html_e( 'Noch keine Anmeldungen.', 'claudia-editorial' ); ?></td></tr>
+					<tr><td colspan="4"><?php esc_html_e( 'Noch keine Anmeldungen.', 'claudia-editorial' ); ?></td></tr>
 				<?php endif; ?>
 			</tbody>
 		</table>
@@ -244,14 +360,14 @@ function claudia_export_subscribers() {
 
 	global $wpdb;
 	$table = claudia_subscribers_table();
-	$rows  = $wpdb->get_results( "SELECT email, created_at, status FROM $table ORDER BY created_at DESC", ARRAY_A ); // phpcs:ignore WordPress.DB
+	$rows  = $wpdb->get_results( "SELECT email, created_at, confirmed_at FROM $table WHERE status = 'confirmed' ORDER BY confirmed_at DESC", ARRAY_A ); // phpcs:ignore WordPress.DB
 
 	nocache_headers();
 	header( 'Content-Type: text/csv; charset=utf-8' );
 	header( 'Content-Disposition: attachment; filename=newsletter-abonnenten.csv' );
 
 	$out = fopen( 'php://output', 'w' );
-	fputcsv( $out, array( 'email', 'created_at', 'status' ) );
+	fputcsv( $out, array( 'email', 'created_at', 'confirmed_at' ) );
 	if ( $rows ) {
 		foreach ( $rows as $row ) {
 			fputcsv( $out, $row );

@@ -44,9 +44,15 @@ Shortcode lässt es sich überall einfügen:
 [claudia_subscribe heading="Bleib auf dem Laufenden"]
 ```
 
+- **Double-Opt-in (DSGVO-konform):** Nach dem Eintragen erhält der Besucher
+  eine **Bestätigungs-E-Mail**. Erst nach Klick auf den Link gilt die Anmeldung
+  als bestätigt – ungeprüfte Adressen werden nicht als Abonnenten gezählt.
 - Die Adressen werden in der Datenbank gespeichert (mit Honeypot-Spamschutz).
-- Übersicht & Verwaltung: WordPress-Admin → **Newsletter**.
-- Dort lässt sich die Liste auch als **CSV exportieren**.
+- Übersicht & Verwaltung: WordPress-Admin → **Newsletter** (zeigt Status
+  „bestätigt“ / „ausstehend“).
+- Dort lässt sich die Liste der **bestätigten** Abonnenten als **CSV exportieren**.
+- Voraussetzung: WordPress muss E-Mails versenden können (`wp_mail`). Falls die
+  Bestätigungsmails nicht ankommen, hilft ein SMTP-Plugin (z. B. WP Mail SMTP).
 - Hinweis: Das Theme *sammelt* Adressen. Zum *Versenden* von Newslettern die
   CSV-Liste in einen Dienst importieren oder ein Sende-Plugin (z. B. MailPoet)
   ergänzen.
