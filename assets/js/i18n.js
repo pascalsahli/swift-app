@@ -25,7 +25,7 @@ window.SAHLI_I18N = {
 
     /* --- home --- */
     "home.title":        "Sahli & Partner",
-    "home.hero.eyebrow": "Sahli Partners",
+    "home.hero.eyebrow": "Sahli & Partner",
     "home.hero.title":   "Engel, die für Sie arbeiten",
     "home.hero.lead":    "Management- und Investment-Mandate, die Hindernisse beseitigen und Ihre Geschäftsziele konsequent vorantreiben.",
     "home.p1":  "Wussten Sie schon?",
@@ -178,7 +178,7 @@ window.SAHLI_I18N = {
 
     /* --- home --- */
     "home.title":        "Sahli & Partner",
-    "home.hero.eyebrow": "Sahli Partners",
+    "home.hero.eyebrow": "Sahli & Partner",
     "home.hero.title":   "Angels working for you",
     "home.hero.lead":    "Management and investment mandates that remove obstacles and drive your business objectives.",
     "home.p1":  "did you know?",
