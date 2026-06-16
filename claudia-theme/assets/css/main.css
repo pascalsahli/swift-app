@@ -107,7 +107,7 @@ h1, h2, h3, h4 {
 .site-nav .caret { font-size: 10px; color: var(--muted); }
 .site-nav .menu-item-has-children { position: relative; }
 .site-nav .sub-menu {
-  display: block; position: absolute; top: 100%; left: 0; min-width: 280px;
+  display: block; position: absolute; top: 100%; right: 0; left: auto; min-width: 220px;
   background: var(--paper); border: 1px solid var(--line); box-shadow: var(--shadow);
   list-style: none; margin: 14px 0 0; padding: 8px 0; max-height: 70vh; overflow-y: auto;
   opacity: 0; visibility: hidden; transform: translateY(6px);
