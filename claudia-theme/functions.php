@@ -73,22 +73,31 @@ function claudia_editorial_assets() {
 		null
 	);
 
+	$dir = get_template_directory();
+	$uri = get_template_directory_uri();
+
+	// File modification times are used as version strings, so any edit to a
+	// stylesheet/script automatically busts the browser and CDN cache.
+	$css_ver  = file_exists( $dir . '/style.css' ) ? filemtime( $dir . '/style.css' ) : false;
+	$main_ver = file_exists( $dir . '/assets/css/main.css' ) ? filemtime( $dir . '/assets/css/main.css' ) : false;
+	$js_ver   = file_exists( $dir . '/assets/js/main.js' ) ? filemtime( $dir . '/assets/js/main.js' ) : false;
+
 	// Required base stylesheet (theme header).
-	wp_enqueue_style( 'claudia-editorial-base', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
+	wp_enqueue_style( 'claudia-editorial-base', get_stylesheet_uri(), array(), $css_ver );
 
 	// Main shared stylesheet.
 	wp_enqueue_style(
 		'claudia-editorial-main',
-		get_template_directory_uri() . '/assets/css/main.css',
+		$uri . '/assets/css/main.css',
 		array( 'claudia-editorial-base' ),
-		wp_get_theme()->get( 'Version' )
+		$main_ver
 	);
 
 	wp_enqueue_script(
 		'claudia-editorial-nav',
-		get_template_directory_uri() . '/assets/js/main.js',
+		$uri . '/assets/js/main.js',
 		array(),
-		wp_get_theme()->get( 'Version' ),
+		$js_ver,
 		true
 	);
 
