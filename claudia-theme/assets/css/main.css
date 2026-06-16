@@ -104,6 +104,23 @@ h1, h2, h3, h4 {
   display: none; background: none; border: 0; cursor: pointer;
   font-size: 22px; color: var(--ink); padding: 6px;
 }
+.site-nav .caret { font-size: 10px; color: var(--muted); }
+.site-nav .menu-item-has-children { position: relative; }
+.site-nav .sub-menu {
+  display: block; position: absolute; top: 100%; left: 0; min-width: 280px;
+  background: var(--paper); border: 1px solid var(--line); box-shadow: var(--shadow);
+  list-style: none; margin: 14px 0 0; padding: 8px 0; max-height: 70vh; overflow-y: auto;
+  opacity: 0; visibility: hidden; transform: translateY(6px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s; z-index: 80;
+}
+.site-nav .menu-item-has-children:hover .sub-menu,
+.site-nav .menu-item-has-children:focus-within .sub-menu {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+.site-nav .sub-menu li { display: block; }
+.site-nav .sub-menu a { display: block; padding: 9px 22px; font-size: 14.5px; white-space: nowrap; }
+.site-nav .sub-menu a::after { display: none; }
+.site-nav .sub-menu a:hover { background: var(--cream); color: var(--accent-dk); }
 
 /* ---------------------------------------------------------------- Hero / Featured */
 .featured { padding: 64px 0 24px; }
@@ -274,13 +291,23 @@ h1, h2, h3, h4 {
   body { font-size: 17px; }
   .section { padding: 52px 0; }
   .site-nav {
-    position: fixed; inset: 0 0 0 30%; background: var(--paper); padding: 90px 28px;
+    position: fixed; inset: 0 0 0 22%; background: var(--paper); padding: 84px 26px 40px;
     flex-direction: column; box-shadow: var(--shadow); transform: translateX(100%);
-    transition: transform .3s ease; z-index: 60;
+    transition: transform .3s ease; z-index: 60; overflow-y: auto;
   }
   .site-nav.is-open { transform: translateX(0); }
-  .site-nav ul { flex-direction: column; gap: 22px; }
+  .site-nav ul { flex-direction: column; gap: 18px; }
   .nav-toggle { display: block; z-index: 70; }
+  /* Show all posts directly in the mobile panel (no hover needed). */
+  .site-nav .sub-menu {
+    position: static; opacity: 1; visibility: visible; transform: none;
+    box-shadow: none; border: 0; background: transparent; margin: 12px 0 0;
+    padding: 0 0 0 14px; max-height: none; min-width: 0;
+    border-left: 1px solid var(--line);
+  }
+  .site-nav .sub-menu li { margin-top: 12px; }
+  .site-nav .sub-menu a { padding: 0; white-space: normal; }
+  .site-nav .caret { display: none; }
   .post-grid { grid-template-columns: 1fr; }
   .footer__grid { grid-template-columns: 1fr; }
   .subscribe { flex-direction: column; }

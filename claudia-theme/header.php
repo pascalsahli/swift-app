@@ -52,9 +52,31 @@
 					)
 				);
 			} else {
-				echo '<ul>';
-				wp_list_pages( array( 'title_li' => '' ) );
-				echo '</ul>';
+				// No custom menu set: build a sensible automatic menu.
+				$claudia_posts = get_posts(
+					array(
+						'numberposts' => -1,
+						'post_status' => 'publish',
+						'orderby'     => 'date',
+						'order'       => 'DESC',
+					)
+				);
+				?>
+				<ul>
+					<li class="<?php echo ( is_home() || is_front_page() ) ? 'current' : ''; ?>"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Start', 'claudia-editorial' ); ?></a></li>
+					<?php wp_list_pages( array( 'title_li' => '', 'depth' => 1 ) ); ?>
+					<?php if ( $claudia_posts ) : ?>
+						<li class="menu-item-has-children">
+							<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Beiträge', 'claudia-editorial' ); ?> <span class="caret" aria-hidden="true">▾</span></a>
+							<ul class="sub-menu">
+								<?php foreach ( $claudia_posts as $claudia_post ) : ?>
+									<li><a href="<?php echo esc_url( get_permalink( $claudia_post ) ); ?>"><?php echo esc_html( get_the_title( $claudia_post ) ); ?></a></li>
+								<?php endforeach; ?>
+							</ul>
+						</li>
+					<?php endif; ?>
+				</ul>
+				<?php
 			}
 			?>
 		</nav>
