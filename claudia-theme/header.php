@@ -23,7 +23,7 @@
 	<div class="site-header__inner">
 		<div class="site-brand">
 			<a class="site-brand__avatar" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-hidden="true" tabindex="-1">
-				<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/claudia.jpg' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="56" height="56">
+				<img src="<?php echo esc_url( claudia_portrait_url() ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="56" height="56">
 			</a>
 			<div class="site-brand__text">
 				<?php if ( has_custom_logo() ) : ?>

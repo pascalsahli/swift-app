@@ -35,7 +35,7 @@ while ( have_posts() ) :
 					<?php if ( claudia_has_image() ) : ?>
 						<?php echo claudia_image( 'large' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					<?php else : ?>
-						<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/claudia.jpg' ); ?>" alt="<?php the_title_attribute(); ?>">
+						<img src="<?php echo esc_url( claudia_portrait_url() ); ?>" alt="<?php the_title_attribute(); ?>">
 					<?php endif; ?>
 				</div>
 				<div class="about-intro__body">

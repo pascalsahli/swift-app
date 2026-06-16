@@ -117,6 +117,19 @@ function claudia_editorial_widgets() {
 add_action( 'widgets_init', 'claudia_editorial_widgets' );
 
 /**
+ * URL of the bundled portrait photo, with a cache-busting version based on the
+ * file's modification time (so a replaced photo is reloaded, not served stale).
+ *
+ * @return string
+ */
+function claudia_portrait_url() {
+	$path = get_template_directory() . '/assets/img/claudia.jpg';
+	$uri  = get_template_directory_uri() . '/assets/img/claudia.jpg';
+	$ver  = file_exists( $path ) ? filemtime( $path ) : wp_get_theme()->get( 'Version' );
+	return $uri . '?v=' . $ver;
+}
+
+/**
  * Find the URL of the first image inside a post's content.
  *
  * @param int|WP_Post|null $post Optional post.
