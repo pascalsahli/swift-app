@@ -70,7 +70,7 @@
 							<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Beiträge', 'claudia-editorial' ); ?> <span class="caret" aria-hidden="true">▾</span></a>
 							<ul class="sub-menu">
 								<?php foreach ( $claudia_posts as $claudia_post ) : ?>
-									<li><a href="<?php echo esc_url( get_permalink( $claudia_post ) ); ?>"><?php echo esc_html( get_the_title( $claudia_post ) ); ?></a></li>
+									<li><a href="<?php echo esc_url( get_permalink( $claudia_post ) ); ?>" title="<?php echo esc_attr( get_the_title( $claudia_post ) ); ?>"><?php echo esc_html( get_the_date( 'j. F Y', $claudia_post ) ); ?></a></li>
 								<?php endforeach; ?>
 							</ul>
 						</li>
