@@ -42,18 +42,11 @@
 				?>
 			</div>
 
-			<div class="footer">
-				<?php if ( is_active_sidebar( 'footer-1' ) ) : ?>
+			<?php if ( is_active_sidebar( 'footer-1' ) ) : ?>
+				<div class="footer">
 					<?php dynamic_sidebar( 'footer-1' ); ?>
-				<?php else : ?>
-					<h4><?php esc_html_e( 'Folgen', 'claudia-editorial' ); ?></h4>
-					<ul>
-						<li><a href="https://www.instagram.com/sahliclaudia/" rel="noopener" target="_blank">Instagram</a></li>
-						<li><a href="https://www.facebook.com/claudia.sahli/" rel="noopener" target="_blank">Facebook</a></li>
-						<li><a href="<?php echo esc_url( get_feed_link() ); ?>">RSS-Feed</a></li>
-					</ul>
-				<?php endif; ?>
-			</div>
+				</div>
+			<?php endif; ?>
 		</div>
 
 		<div class="footer__bottom">

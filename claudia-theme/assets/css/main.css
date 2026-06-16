@@ -237,7 +237,7 @@ h1, h2, h3, h4 {
 .site-footer { background: var(--ink); color: #d8d2c6; padding: 64px 0 32px; margin-top: 40px; }
 .site-footer a { color: #d8d2c6; }
 .site-footer a:hover { color: #fff; }
-.footer__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
+.footer__grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; }
 .footer__brand .site-brand__title { color: #fff; }
 .footer__brand p { color: #a59f93; max-width: 32ch; margin: 12px 0 0; font-size: 15px; }
 .footer h4 { color: #fff; font-family: var(--sans); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; }
