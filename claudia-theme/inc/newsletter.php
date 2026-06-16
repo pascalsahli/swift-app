@@ -108,22 +108,10 @@ function claudia_subscribe_form( $args = array() ) {
 	);
 
 	// Feedback after a submission (set via redirect query arg).
-	$state   = isset( $_GET['claudia_sub'] ) ? sanitize_key( wp_unslash( $_GET['claudia_sub'] ) ) : '';
-	$message = '';
-	$is_ok   = false;
-	if ( 'pending' === $state ) {
-		$message = __( 'Fast geschafft! Wir haben dir eine Bestätigungs-E-Mail geschickt. Bitte klicke auf den Link darin, um deine Anmeldung abzuschliessen.', 'claudia-editorial' );
-		$is_ok   = true;
-	} elseif ( 'confirmed' === $state ) {
-		$message = __( 'Vielen Dank! Deine Anmeldung ist jetzt bestätigt.', 'claudia-editorial' );
-		$is_ok   = true;
-	} elseif ( 'exists' === $state ) {
-		$message = __( 'Diese Adresse ist bereits angemeldet.', 'claudia-editorial' );
-	} elseif ( 'confirm_invalid' === $state ) {
-		$message = __( 'Dieser Bestätigungslink ist ungültig oder abgelaufen.', 'claudia-editorial' );
-	} elseif ( 'invalid' === $state ) {
-		$message = __( 'Bitte gib eine gültige E-Mail-Adresse ein.', 'claudia-editorial' );
-	}
+	$state    = isset( $_GET['claudia_sub'] ) ? sanitize_key( wp_unslash( $_GET['claudia_sub'] ) ) : '';
+	$feedback = $state ? claudia_subscribe_feedback( $state ) : array( 'ok' => false, 'message' => '' );
+	$message  = $feedback['message'];
+	$is_ok    = $feedback['ok'];
 
 	ob_start();
 	?>
@@ -171,37 +159,68 @@ add_shortcode(
 );
 
 /**
- * Handle the form submission (logged-in and logged-out visitors).
+ * Map a status code to user feedback (used by the form, redirect and AJAX).
+ *
+ * @param string $status pending|confirmed|exists|confirm_invalid|invalid.
+ * @return array{ok:bool,message:string}
  */
-function claudia_handle_subscribe() {
-	$redirect = wp_get_referer() ? wp_get_referer() : home_url( '/' );
-
-	// Verify nonce.
-	if ( ! isset( $_POST['claudia_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['claudia_nonce'] ) ), 'claudia_subscribe' ) ) {
-		wp_safe_redirect( add_query_arg( 'claudia_sub', 'invalid', $redirect ) . '#newsletter' );
-		exit;
+function claudia_subscribe_feedback( $status ) {
+	switch ( $status ) {
+		case 'pending':
+			return array(
+				'ok'      => true,
+				'message' => __( 'Danke! Wir haben dir eine Bestätigungs-E-Mail geschickt. Bitte klicke auf den Link darin, um deine Anmeldung abzuschliessen.', 'claudia-editorial' ),
+			);
+		case 'confirmed':
+			return array(
+				'ok'      => true,
+				'message' => __( 'Vielen Dank! Deine Anmeldung ist jetzt bestätigt.', 'claudia-editorial' ),
+			);
+		case 'exists':
+			return array(
+				'ok'      => false,
+				'message' => __( 'Diese Adresse ist bereits angemeldet.', 'claudia-editorial' ),
+			);
+		case 'confirm_invalid':
+			return array(
+				'ok'      => false,
+				'message' => __( 'Dieser Bestätigungslink ist ungültig oder abgelaufen.', 'claudia-editorial' ),
+			);
+		case 'invalid':
+			return array(
+				'ok'      => false,
+				'message' => __( 'Bitte gib eine gültige E-Mail-Adresse ein.', 'claudia-editorial' ),
+			);
 	}
+	return array(
+		'ok'      => false,
+		'message' => '',
+	);
+}
 
+/**
+ * Core subscription logic: validate, store as pending, send confirmation.
+ *
+ * @param string $email          Submitted e-mail.
+ * @param bool   $honeypot_filled Whether the honeypot field was filled (bot).
+ * @return string Status code for claudia_subscribe_feedback().
+ */
+function claudia_process_subscription( $email, $honeypot_filled ) {
 	// Honeypot: pretend success so bots don't learn anything.
-	if ( ! empty( $_POST['claudia_website'] ) ) {
-		wp_safe_redirect( add_query_arg( 'claudia_sub', 'success', $redirect ) . '#newsletter' );
-		exit;
+	if ( $honeypot_filled ) {
+		return 'pending';
 	}
 
-	$email = isset( $_POST['claudia_email'] ) ? sanitize_email( wp_unslash( $_POST['claudia_email'] ) ) : '';
 	if ( ! $email || ! is_email( $email ) ) {
-		wp_safe_redirect( add_query_arg( 'claudia_sub', 'invalid', $redirect ) . '#newsletter' );
-		exit;
+		return 'invalid';
 	}
 
 	global $wpdb;
 	$table    = claudia_subscribers_table();
-	$existing = $wpdb->get_row( $wpdb->prepare( "SELECT id, status, token FROM $table WHERE email = %s", $email ) ); // phpcs:ignore WordPress.DB
+	$existing = $wpdb->get_row( $wpdb->prepare( "SELECT id, status FROM $table WHERE email = %s", $email ) ); // phpcs:ignore WordPress.DB
 
 	if ( $existing && 'confirmed' === $existing->status ) {
-		// Already a confirmed subscriber.
-		wp_safe_redirect( add_query_arg( 'claudia_sub', 'exists', $redirect ) . '#newsletter' );
-		exit;
+		return 'exists';
 	}
 
 	$token = wp_generate_password( 32, false );
@@ -233,11 +252,80 @@ function claudia_handle_subscribe() {
 
 	claudia_send_confirmation( $email, $token );
 
-	wp_safe_redirect( add_query_arg( 'claudia_sub', 'pending', $redirect ) . '#newsletter' );
+	return 'pending';
+}
+
+/**
+ * Handle the classic (no-JS) form submission via admin-post.
+ */
+function claudia_handle_subscribe() {
+	$redirect = wp_get_referer() ? wp_get_referer() : home_url( '/' );
+
+	if ( ! isset( $_POST['claudia_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['claudia_nonce'] ) ), 'claudia_subscribe' ) ) {
+		wp_safe_redirect( add_query_arg( 'claudia_sub', 'invalid', $redirect ) . '#newsletter' );
+		exit;
+	}
+
+	$honeypot = ! empty( $_POST['claudia_website'] );
+	$email    = isset( $_POST['claudia_email'] ) ? sanitize_email( wp_unslash( $_POST['claudia_email'] ) ) : '';
+	$status   = claudia_process_subscription( $email, $honeypot );
+
+	wp_safe_redirect( add_query_arg( 'claudia_sub', $status, $redirect ) . '#newsletter' );
 	exit;
 }
 add_action( 'admin_post_nopriv_claudia_subscribe', 'claudia_handle_subscribe' );
 add_action( 'admin_post_claudia_subscribe', 'claudia_handle_subscribe' );
+
+/**
+ * Handle the AJAX submission (instant inline feedback, no page reload).
+ */
+function claudia_ajax_subscribe() {
+	if ( ! isset( $_POST['claudia_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['claudia_nonce'] ) ), 'claudia_subscribe' ) ) {
+		wp_send_json(
+			array(
+				'ok'      => false,
+				'message' => __( 'Bitte lade die Seite neu und versuche es noch einmal.', 'claudia-editorial' ),
+			)
+		);
+	}
+
+	$honeypot = ! empty( $_POST['claudia_website'] );
+	$email    = isset( $_POST['claudia_email'] ) ? sanitize_email( wp_unslash( $_POST['claudia_email'] ) ) : '';
+	$status   = claudia_process_subscription( $email, $honeypot );
+
+	wp_send_json( claudia_subscribe_feedback( $status ) );
+}
+add_action( 'wp_ajax_nopriv_claudia_ajax_subscribe', 'claudia_ajax_subscribe' );
+add_action( 'wp_ajax_claudia_ajax_subscribe', 'claudia_ajax_subscribe' );
+
+/**
+ * Brand outgoing e-mails with the blog name instead of "WordPress".
+ *
+ * @param string $name Default from-name.
+ * @return string
+ */
+function claudia_mail_from_name( $name ) {
+	$blog = wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES );
+	return $blog ? $blog : $name;
+}
+add_filter( 'wp_mail_from_name', 'claudia_mail_from_name' );
+
+/**
+ * Use a clean from-address on the site's own domain (keeps SPF aligned and
+ * removes the default "wordpress@" sender).
+ *
+ * @param string $email Default from-address.
+ * @return string
+ */
+function claudia_mail_from( $email ) {
+	$host = wp_parse_url( network_home_url(), PHP_URL_HOST );
+	if ( ! $host ) {
+		return $email;
+	}
+	$host = preg_replace( '/^www\./i', '', strtolower( $host ) );
+	return 'no-reply@' . $host;
+}
+add_filter( 'wp_mail_from', 'claudia_mail_from' );
 
 /**
  * Handle the confirmation link from the double opt-in e-mail.

@@ -101,6 +101,13 @@ function claudia_editorial_assets() {
 		true
 	);
 
+	// AJAX endpoint for the instant newsletter feedback.
+	wp_localize_script(
+		'claudia-editorial-nav',
+		'ClaudiaNL',
+		array( 'ajax' => admin_url( 'admin-ajax.php' ) )
+	);
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
