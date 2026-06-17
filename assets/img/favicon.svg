@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 82">
+  <rect width="82" height="82" rx="10" fill="#16244a"/>
+  <defs><linearGradient id="wing" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#7c889b"/><stop offset="0.55" stop-color="#c4ccd7"/><stop offset="1" stop-color="#ffffff"/></linearGradient></defs>
+  <g fill="url(#wing)" transform="translate(42 22) scale(0.8)">
+    <path d="M0 0 C 30 -9 56 -22 76 -33 C 58 -15 32 -4 3 4 Z"/>
+    <path d="M0 7 C 27 0 50 -9 68 -19 C 52 -5 29 4 3 11 Z"/>
+    <path d="M0 14 C 24 9 45 3 60 -4 C 47 6 26 13 3 18 Z"/>
+    <path d="M0 21 C 21 17 39 13 51 7 C 41 16 23 21 3 24 Z"/>
+  </g>
+  <text x="4" y="74" font-family="'Playfair Display', Georgia, serif" font-size="80" font-weight="800" letter-spacing="-5" fill="#ffffff">SP</text>
+</svg>
