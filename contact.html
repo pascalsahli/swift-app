@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sahli &amp; Partner</title>
-  <meta name="description" content="Sahli & Partner — Executive and financial mandates." />
+  <meta name="description" content="Sahli & Partner — Contact." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 </head>
-<body data-page="home" data-title-key="home.title">
+<body data-page="contact" data-title-key="contact.title">
 
   <header class="site-header">
     <nav class="nav container" aria-label="Hauptnavigation">
@@ -38,58 +38,37 @@
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero compact">
       <div class="container">
-        <span class="eyebrow" data-i18n="home.hero.eyebrow"></span>
-        <h1 data-i18n="home.hero.title"></h1>
-        <p class="lead" data-i18n="home.hero.lead"></p>
-        <div class="hero-actions">
-          <a href="contact.html" class="btn btn-primary" data-i18n="cta.contact">Kontakt</a>
-          <a href="executive-mandates.html" class="btn btn-outline" data-i18n="cta.more">Mehr</a>
-        </div>
+        <span class="eyebrow" data-i18n="contact.hero.eyebrow"></span>
+        <h1 data-i18n="contact.hero.title"></h1>
+        <p class="lead" data-i18n="contact.hero.lead"></p>
       </div>
     </section>
     <section class="section">
-      <div class="container prose narrow">
-        <p class="kicker" data-i18n="home.p1"></p>
-        <p data-i18n="home.p2"></p>
-        <p data-i18n="home.p3"></p>
-        <p data-i18n="home.p4"></p>
-        <p data-i18n="home.p5"></p>
-        <p data-i18n="home.p6"></p>
+      <div class="container contact-grid">
+        <div class="contact-info">
+          <h2 data-i18n="contact.info.title"></h2>
+          <hr class="rule" />
+          <dl>
+            <dt data-i18n="contact.info.addr.l"></dt>
+            <dd data-i18n="contact.info.addr.v"></dd>
+            <dt data-i18n="contact.info.mail.l"></dt>
+            <dd><a href="mailto:info@sahli.com">info@sahli.com</a></dd>
+          </dl>
+        </div>
+        <div>
+          <form action="mailto:info@sahli.com" method="post" enctype="text/plain">
+            <div class="field"><label for="name" data-i18n="contact.form.name"></label><input type="text" id="name" name="name" required /></div>
+            <div class="field"><label for="email" data-i18n="contact.form.email"></label><input type="email" id="email" name="email" required /></div>
+            <div class="field"><label for="message" data-i18n="contact.form.message"></label><textarea id="message" name="message" required></textarea></div>
+            <button type="submit" class="btn btn-primary" data-i18n="contact.form.send"></button>
+            <p class="form-note" data-i18n="contact.form.note"></p>
+          </form>
+        </div>
       </div>
     </section>
 
-    <section class="section section-alt">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow" data-i18n="home.hero.eyebrow"></span>
-          <h2 data-i18n="home.cards.title"></h2>
-          <hr class="rule" />
-        </div>
-        <div class="grid">
-          <article class="card">
-            <div class="num">I</div>
-            <h3 data-i18n="home.cards.exec.t"></h3>
-            <p data-i18n="home.cards.exec.d"></p>
-            <a href="executive-mandates.html" class="more" data-i18n="cta.more">Mehr</a>
-          </article>
-          <article class="card">
-            <div class="num">II</div>
-            <h3 data-i18n="home.cards.fin.t"></h3>
-            <p data-i18n="home.cards.fin.d"></p>
-            <a href="financial-mandates.html" class="more" data-i18n="cta.more">Mehr</a>
-          </article>
-        </div>
-      </div>
-    </section>
-    <section class="cta-band">
-      <div class="container">
-        <h2 data-i18n="home.cta.title">Sprechen wir.</h2>
-        <p data-i18n="home.cta.body"></p>
-        <a href="contact.html" class="btn btn-light" data-i18n="cta.contact">Kontakt aufnehmen</a>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
