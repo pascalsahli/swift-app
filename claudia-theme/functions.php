@@ -146,20 +146,72 @@ function claudia_portrait_url() {
 }
 
 /**
+ * Get the first <img> tag found in a post's content.
+ *
+ * @param int|WP_Post|null $post Optional post.
+ * @return string The full <img …> tag, or empty string.
+ */
+function claudia_first_content_image_tag( $post = null ) {
+	$post = get_post( $post );
+	if ( ! $post ) {
+		return '';
+	}
+	if ( preg_match( '/<img\b[^>]*>/i', $post->post_content, $m ) ) {
+		return $m[0];
+	}
+	return '';
+}
+
+/**
  * Find the URL of the first image inside a post's content.
  *
  * @param int|WP_Post|null $post Optional post.
  * @return string Image URL or empty string.
  */
 function claudia_first_content_image_url( $post = null ) {
-	$post = get_post( $post );
-	if ( ! $post ) {
-		return '';
-	}
-	if ( preg_match( '/<img[^>]+src=["\']([^"\']+)["\']/i', $post->post_content, $m ) ) {
+	$tag = claudia_first_content_image_tag( $post );
+	if ( $tag && preg_match( '/src=["\']([^"\']+)["\']/i', $tag, $m ) ) {
 		return $m[1];
 	}
 	return '';
+}
+
+/**
+ * Try to resolve the first content image to a media-library attachment ID,
+ * so an optimized size (not the original) can be served.
+ *
+ * @param int|WP_Post|null $post Optional post.
+ * @return int Attachment ID or 0.
+ */
+function claudia_first_content_image_id( $post = null ) {
+	$tag = claudia_first_content_image_tag( $post );
+	if ( ! $tag ) {
+		return 0;
+	}
+
+	// 1) Editor images carry a wp-image-{ID} class — fastest and most reliable.
+	if ( preg_match( '/wp-image-(\d+)/', $tag, $m ) ) {
+		return (int) $m[1];
+	}
+
+	// 2) Fall back to resolving the image URL to an attachment.
+	if ( preg_match( '/src=["\']([^"\']+)["\']/i', $tag, $s ) ) {
+		$url = $s[1];
+		$id  = attachment_url_to_postid( $url );
+		if ( $id ) {
+			return $id;
+		}
+		// The URL may point to a generated size (…-1024x768.jpg); try the original.
+		$stripped = preg_replace( '/-\d+x\d+(\.[A-Za-z0-9]+)$/', '$1', $url );
+		if ( $stripped !== $url ) {
+			$id = attachment_url_to_postid( $stripped );
+			if ( $id ) {
+				return $id;
+			}
+		}
+	}
+
+	return 0;
 }
 
 /**
@@ -176,7 +228,10 @@ function claudia_has_image( $post = null ) {
  * Output an <img> for a post: the featured image if set, otherwise the first
  * image found in the post content. Saves setting a featured image on every post.
  *
- * @param string           $size Image size for the featured image.
+ * Prefers a media-library attachment so an optimized, responsive size is served
+ * (with srcset) instead of a possibly full-size embedded original.
+ *
+ * @param string           $size Image size to request.
  * @param int|WP_Post|null $post Optional post.
  * @return string HTML <img> or empty string.
  */
@@ -185,6 +240,25 @@ function claudia_image( $size = 'large', $post = null ) {
 	if ( has_post_thumbnail( $post ) ) {
 		return get_the_post_thumbnail( $post, $size, array( 'alt' => the_title_attribute( array( 'echo' => false, 'post' => $post ) ) ) );
 	}
+
+	// Optimized: serve the requested registered size from the media library.
+	$att_id = claudia_first_content_image_id( $post );
+	if ( $att_id ) {
+		$img = wp_get_attachment_image(
+			$att_id,
+			$size,
+			false,
+			array(
+				'alt'     => get_the_title( $post ),
+				'loading' => 'lazy',
+			)
+		);
+		if ( $img ) {
+			return $img;
+		}
+	}
+
+	// Last resort: the raw embedded image (e.g. external or unresolved URL).
 	$url = claudia_first_content_image_url( $post );
 	if ( $url ) {
 		return '<img src="' . esc_url( $url ) . '" alt="' . esc_attr( get_the_title( $post ) ) . '" loading="lazy">';
