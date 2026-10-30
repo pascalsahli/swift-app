@@ -85,6 +85,20 @@ claudia-theme/
     └── js/main.js       Mobiles Menü
 ```
 
+## Mehrsprachig (DE/EN)
+
+Das Theme ist übersetzungsbereit und hat oben im Kopf einen Platz für einen
+Sprachumschalter. Vorgehen:
+
+1. Ein Übersetzungs-Plugin installieren (z. B. **GTranslate** gratis,
+   **TranslatePress + DeepL** oder **Weglot**).
+2. Design → **Customizer** → **Sprache / Übersetzung** → den Shortcode des
+   Plugins eintragen (z. B. `[gtranslate]`, `[weglot_switcher]` oder
+   `[language-switcher]`). Er erscheint dann oben rechts im Kopfbereich.
+
+Alternativ per Filter in einem Child-Theme/Snippet:
+`add_filter( 'claudia_language_switcher', fn() => '[gtranslate]' );`
+
 ## Technik
 
 - Klassisches PHP-Theme, kompatibel mit WordPress 6.0+ und PHP 7.4+.

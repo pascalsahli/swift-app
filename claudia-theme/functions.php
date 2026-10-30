@@ -133,6 +133,40 @@ function claudia_editorial_widgets() {
 add_action( 'widgets_init', 'claudia_editorial_widgets' );
 
 /**
+ * Customizer: a field to drop in a translation plugin's language-switcher
+ * shortcode, shown in the header (e.g. [gtranslate], [weglot_switcher],
+ * [language-switcher]).
+ *
+ * @param WP_Customize_Manager $wp_customize Customizer manager.
+ */
+function claudia_customize_register( $wp_customize ) {
+	$wp_customize->add_section(
+		'claudia_language',
+		array(
+			'title'    => __( 'Sprache / Übersetzung', 'claudia-editorial' ),
+			'priority' => 160,
+		)
+	);
+	$wp_customize->add_setting(
+		'claudia_lang_shortcode',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'wp_kses_post',
+		)
+	);
+	$wp_customize->add_control(
+		'claudia_lang_shortcode',
+		array(
+			'label'       => __( 'Sprachumschalter-Shortcode', 'claudia-editorial' ),
+			'description' => __( 'Shortcode deines Übersetzungs-Plugins, z. B. [gtranslate], [weglot_switcher] oder [language-switcher]. Erscheint oben rechts im Kopfbereich.', 'claudia-editorial' ),
+			'section'     => 'claudia_language',
+			'type'        => 'text',
+		)
+	);
+}
+add_action( 'customize_register', 'claudia_customize_register' );
+
+/**
  * URL of the bundled portrait photo, with a cache-busting version based on the
  * file's modification time (so a replaced photo is reloaded, not served stale).
  *

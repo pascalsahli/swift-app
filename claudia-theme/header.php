@@ -38,7 +38,18 @@
 			</div>
 		</div>
 
-		<button class="nav-toggle" aria-label="<?php esc_attr_e( 'Menü', 'claudia-editorial' ); ?>" aria-expanded="false" aria-controls="primary-nav">☰</button>
+		<div class="site-header__controls">
+			<?php
+			// Language switcher slot. Set a shortcode under Customizer → "Sprache /
+			// Übersetzung" (e.g. [gtranslate], [weglot_switcher], [language-switcher]),
+			// or override via the 'claudia_language_switcher' filter.
+			$claudia_lang = trim( do_shortcode( apply_filters( 'claudia_language_switcher', get_theme_mod( 'claudia_lang_shortcode', '' ) ) ) );
+			if ( '' !== $claudia_lang ) {
+				echo '<div class="site-lang">' . $claudia_lang . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			}
+			?>
+
+			<button class="nav-toggle" aria-label="<?php esc_attr_e( 'Menü', 'claudia-editorial' ); ?>" aria-expanded="false" aria-controls="primary-nav">☰</button>
 
 		<nav class="site-nav" id="primary-nav" aria-label="<?php esc_attr_e( 'Hauptmenü', 'claudia-editorial' ); ?>">
 			<?php
@@ -80,6 +91,7 @@
 			}
 			?>
 		</nav>
+		</div>
 	</div>
 </header>
 
