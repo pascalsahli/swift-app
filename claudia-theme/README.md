@@ -87,17 +87,22 @@ claudia-theme/
 
 ## Mehrsprachig (DE/EN)
 
-Das Theme ist übersetzungsbereit und hat oben im Kopf einen Platz für einen
-Sprachumschalter. Vorgehen:
+Das Theme bringt eine **kostenlose Übersetzung** direkt mit (Google Website
+Translate) – ohne Zusatz-Plugin:
 
-1. Ein Übersetzungs-Plugin installieren (z. B. **GTranslate** gratis,
-   **TranslatePress + DeepL** oder **Weglot**).
-2. Design → **Customizer** → **Sprache / Übersetzung** → den Shortcode des
-   Plugins eintragen (z. B. `[gtranslate]`, `[weglot_switcher]` oder
-   `[language-switcher]`). Er erscheint dann oben rechts im Kopfbereich.
+- Oben rechts im Kopf erscheint ein **DE/EN-Umschalter**.
+- **Datenschutz:** Google wird erst kontaktiert, wenn ein Besucher aktiv auf
+  **EN** klickt. Deutsche Besucher laden keinerlei Google-Skript.
+- Ein-/ausschalten: Design → **Customizer** → **Sprache / Übersetzung** →
+  „Kostenlose Google-Übersetzung (DE/EN) aktivieren".
 
-Alternativ per Filter in einem Child-Theme/Snippet:
-`add_filter( 'claudia_language_switcher', fn() => '[gtranslate]' );`
+Hinweis: Da bei „EN" Text an Google übermittelt wird, in der
+Datenschutzerklärung erwähnen. Die Übersetzung ist maschinell (gut, aber nicht
+perfekt) und wird vom Google-Dienst nicht separat von Suchmaschinen indexiert.
+
+Lieber ein Plugin mit eigener EN-URL/SEO (z. B. GTranslate, TranslatePress,
+Weglot)? Dann dessen Shortcode unter Customizer → „Sprache / Übersetzung" in das
+Shortcode-Feld eintragen – er hat Vorrang vor der eingebauten Google-Variante.
 
 ## Technik
 

@@ -109,6 +109,14 @@ h1, h2, h3, h4 {
 .site-lang a { color: var(--muted); font-weight: 600; }
 .site-lang a:hover, .site-lang .current, .site-lang a.active { color: var(--ink); }
 .site-lang select { font-family: var(--sans); font-size: 13px; border: 1px solid var(--line); border-radius: var(--radius); padding: 4px 8px; background: #fff; }
+
+/* Google Website Translate: hide its top banner and keep our layout intact. */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-gadget-icon,
+#goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
+body { top: 0 !important; }
+.goog-text-highlight { background: none !important; box-shadow: none !important; }
+#google_translate_element { display: none !important; }
 .site-nav .caret { font-size: 10px; color: var(--muted); }
 .site-nav .menu-item-has-children { position: relative; }
 .site-nav .sub-menu {

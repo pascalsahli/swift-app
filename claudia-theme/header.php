@@ -44,8 +44,11 @@
 			// Übersetzung" (e.g. [gtranslate], [weglot_switcher], [language-switcher]),
 			// or override via the 'claudia_language_switcher' filter.
 			$claudia_lang = trim( do_shortcode( apply_filters( 'claudia_language_switcher', get_theme_mod( 'claudia_lang_shortcode', '' ) ) ) );
+			if ( '' === $claudia_lang && claudia_gtranslate_active() ) {
+				$claudia_lang = '<a href="#" data-lang="de" class="active" lang="de">DE</a><a href="#" data-lang="en" lang="en">EN</a>';
+			}
 			if ( '' !== $claudia_lang ) {
-				echo '<div class="site-lang">' . $claudia_lang . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo '<div class="site-lang" translate="no">' . $claudia_lang . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 			?>
 

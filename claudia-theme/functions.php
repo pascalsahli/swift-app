@@ -108,6 +108,12 @@ function claudia_editorial_assets() {
 		array( 'ajax' => admin_url( 'admin-ajax.php' ) )
 	);
 
+	// Free DE/EN translation switch (only when enabled and no plugin shortcode set).
+	if ( claudia_gtranslate_active() ) {
+		$tr_ver = file_exists( $dir . '/assets/js/translate.js' ) ? filemtime( $dir . '/assets/js/translate.js' ) : false;
+		wp_enqueue_script( 'claudia-editorial-translate', $uri . '/assets/js/translate.js', array(), $tr_ver, true );
+	}
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
@@ -148,6 +154,22 @@ function claudia_customize_register( $wp_customize ) {
 		)
 	);
 	$wp_customize->add_setting(
+		'claudia_enable_gtranslate',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'wp_validate_boolean',
+		)
+	);
+	$wp_customize->add_control(
+		'claudia_enable_gtranslate',
+		array(
+			'label'       => __( 'Kostenlose Google-Übersetzung (DE/EN) aktivieren', 'claudia-editorial' ),
+			'description' => __( 'Zeigt oben rechts einen DE/EN-Umschalter. Google wird erst kontaktiert, wenn ein Besucher auf EN klickt.', 'claudia-editorial' ),
+			'section'     => 'claudia_language',
+			'type'        => 'checkbox',
+		)
+	);
+	$wp_customize->add_setting(
 		'claudia_lang_shortcode',
 		array(
 			'default'           => '',
@@ -157,14 +179,39 @@ function claudia_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'claudia_lang_shortcode',
 		array(
-			'label'       => __( 'Sprachumschalter-Shortcode', 'claudia-editorial' ),
-			'description' => __( 'Shortcode deines Übersetzungs-Plugins, z. B. [gtranslate], [weglot_switcher] oder [language-switcher]. Erscheint oben rechts im Kopfbereich.', 'claudia-editorial' ),
+			'label'       => __( 'Oder: Sprachumschalter-Shortcode', 'claudia-editorial' ),
+			'description' => __( 'Nutzt du lieber ein Übersetzungs-Plugin, trage hier dessen Shortcode ein (z. B. [gtranslate], [weglot_switcher]). Hat Vorrang vor der Google-Übersetzung oben.', 'claudia-editorial' ),
 			'section'     => 'claudia_language',
 			'type'        => 'text',
 		)
 	);
 }
 add_action( 'customize_register', 'claudia_customize_register' );
+
+/**
+ * Whether the built-in free Google translation switch is active.
+ *
+ * It is on when enabled in the Customizer and no plugin shortcode is set
+ * (a shortcode takes precedence).
+ *
+ * @return bool
+ */
+function claudia_gtranslate_active() {
+	if ( '' !== trim( (string) get_theme_mod( 'claudia_lang_shortcode', '' ) ) ) {
+		return false;
+	}
+	return (bool) get_theme_mod( 'claudia_enable_gtranslate', true );
+}
+
+/**
+ * Output the (hidden) Google Translate mount point in the footer.
+ */
+function claudia_gtranslate_mount() {
+	if ( claudia_gtranslate_active() ) {
+		echo '<div id="google_translate_element" aria-hidden="true" style="display:none"></div>';
+	}
+}
+add_action( 'wp_footer', 'claudia_gtranslate_mount' );
 
 /**
  * URL of the bundled portrait photo, with a cache-busting version based on the
